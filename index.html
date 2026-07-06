@@ -352,6 +352,22 @@
     border-radius:2px;
     margin-top:12px;
   }
+  .price-line{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.25rem;
+    color:var(--brown-deep);
+    margin-bottom:14px;
+  }
+  .price-line small{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    font-size:0.78rem;
+    color:var(--brown-mid);
+    margin-top:4px;
+  }
+  .btn-sm{ font-size:0.72rem; padding:10px 16px; }
   @media (max-width:700px){
     .manifest-row{ grid-template-columns:40px 1fr; }
     .manifest-row > div:last-child{ grid-column:2; }
@@ -489,6 +505,40 @@
     letter-spacing:0.08em;
     color:var(--brown-mid);
   }
+
+  .postcard-list{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .postcard-details{ cursor:pointer; }
+  .postcard-details summary{
+    list-style:none;
+    cursor:pointer;
+  }
+  .postcard-details summary::-webkit-details-marker{ display:none; }
+  .postcard-details .teaser{ margin-bottom:14px; }
+  .postcard-details cite{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+  .read-more{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--stamp-red);
+    border:1px solid var(--stamp-red);
+    padding:3px 9px;
+    border-radius:12px;
+  }
+  .postcard-details[open] .read-more{ visibility:hidden; }
+  .postcard-full{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:2px dashed var(--line);
+  }
+  .postcard-full p{ margin-bottom:14px; color:var(--brown-mid); }
+  .postcard-full p:last-child{ margin-bottom:0; }
 
   /* ---------- PRICING ---------- */
   .tiers{
@@ -817,35 +867,80 @@
       <div class="section-head reveal">
         <span class="label">Packing manifest — contents of this engagement</span>
         <h2>How we help you grow</h2>
-        <p>Three ways to work together, depending on where your center is today.</p>
+        <p>From launch to growth — six ways to work together, depending on where your center is today.</p>
       </div>
       <div class="manifest">
         <div class="manifest-row reveal">
           <div class="qty">01</div>
           <div>
-            <h3>Elite Mentorship</h3>
-            <p>Ongoing 1:1 coaching for owner-operators — pricing strategy, staffing, vendor relationships, and the weekly decisions that actually move profit.</p>
+            <h3>Elite Membership</h3>
+            <p>1:1 mentorship, goal setting, weekly calls, and industry insights — plus a private members community and shared documents.</p>
             <span class="manifest-tag">Recurring</span>
           </div>
-          <div><p>Best for owners who want a standing second set of eyes on the business, not a one-time fix.</p></div>
+          <div>
+            <p class="price-line">$5,997 <small>/ 6-month membership, payment plans available</small></p>
+            <a href="https://shiputahconsulting.com/payment-type" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Become a member</a>
+          </div>
         </div>
         <div class="manifest-row reveal">
           <div class="qty">02</div>
           <div>
-            <h3>PostalMate Profit Maximizer</h3>
-            <p>A full audit of your PostalMate and CashMate setup — pricing rules, reporting, package tracking — rebuilt to surface the numbers that drive decisions.</p>
-            <span class="manifest-tag">One-time</span>
+            <h3>In-Store Training</h3>
+            <p>Hands-on training at Ship Utah — live role-based practice, packing demonstrations, customer service, and systems walk-throughs.</p>
+            <span class="manifest-tag">Per day</span>
           </div>
-          <div><p>Best for centers running the software on defaults and leaving margin on the table.</p></div>
+          <div>
+            <p class="price-line">$997&ndash;$1,497 <small>/ day (member vs. non-member rate, 3&ndash;5 days recommended)</small></p>
+            <a href="https://shiputahconsulting.com/in-store-training-3730" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Purchase training</a>
+          </div>
         </div>
         <div class="manifest-row reveal">
           <div class="qty">03</div>
           <div>
-            <h3>Store Design &amp; Buildout</h3>
-            <p>Layout planning, lease negotiation, and contractor coordination for owners opening a new location or reworking an existing floor plan.</p>
+            <h3>PostalMate Masterclass</h3>
+            <p>A complete remote walk-through of PostalMate, CashMate, and mailbox management — done in a single day.</p>
+            <span class="manifest-tag">One-time</span>
+          </div>
+          <div>
+            <p class="price-line">$1,297 <small>one-time fee</small></p>
+            <a href="https://shiputahconsulting.com/postalmate-masterclass-checkout-8079" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Purchase now</a>
+          </div>
+        </div>
+        <div class="manifest-row reveal">
+          <div class="qty">04</div>
+          <div>
+            <h3>PostalMate Profit Maximizer</h3>
+            <p>Complete setup and optimization of PostalMate, CashMate, and mailboxes, plus pricing best practices and inventory setup.</p>
+            <span class="manifest-tag">One-time</span>
+          </div>
+          <div>
+            <p class="price-line">$1,997 <small>one-time fee</small></p>
+            <a href="https://shiputahconsulting.com/postalmate-profit-maximizer-checkout-8487" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Purchase now</a>
+          </div>
+        </div>
+        <div class="manifest-row reveal">
+          <div class="qty">05</div>
+          <div>
+            <h3>Store Buildout</h3>
+            <p>From space and plan design to an opened store — layout, materials, sourcing, and full installation of customer stations, mailbox holders, and package shelving.</p>
             <span class="manifest-tag">Project-based</span>
           </div>
-          <div><p>Best for anyone signing a lease or renovating before the money's already spent.</p></div>
+          <div>
+            <p class="price-line">$14,997+ <small>starting price · travel &amp; lodging included</small></p>
+            <a href="https://shiputahconsulting.com/store-buildout-consultation-checkout" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Book consultation</a>
+          </div>
+        </div>
+        <div class="manifest-row reveal">
+          <div class="qty">06</div>
+          <div>
+            <h3>Google Business Profile</h3>
+            <p>A full profile audit, optimization, photo setup, and a review-management strategy to turn searches into customers.</p>
+            <span class="manifest-tag">One-time</span>
+          </div>
+          <div>
+            <p class="price-line">$197 <small>one-time fee</small></p>
+            <a href="https://shiputahconsulting.com/google-business-profile-checkout" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Purchase now</a>
+          </div>
         </div>
       </div>
     </div>
@@ -894,14 +989,14 @@
         <h2>Who's behind the counter</h2>
       </div>
       <div class="about-grid">
-        <div class="about-photo reveal"><span>FOUNDER — PHOTO GOES HERE</span></div>
+        <div class="about-photo reveal"><span>ANTHONY DIFEDERICO — PHOTO GOES HERE</span></div>
         <div class="about-copy reveal">
-          <p>Ship Utah Consulting was built by operators who've run private mail centers themselves — not theorists who read the PostalMate manual once and started charging for opinions.</p>
-          <p>We've sat across the table during lease negotiations, rebuilt pricing sheets at 11pm before a rate change, and coordinated contractors who showed up two weeks late. We bring that back to your center, whichever stage it's in.</p>
+          <p>Ship Utah Consulting is led by Anthony Difederico, who works directly, in person, inside client stores — flying out to spend real days on the floor teaching PostalMate, CashMate, and customer interactions, not just walking through slides on a call.</p>
+          <p>From negotiating a store purchase down from $35K to $10K, to helping first-time owners choose a location, sign a lease, and manage contractors through a full build-out — the goal is the same every time: you walk away with systems, not just advice.</p>
           <div class="about-stats">
-            <div><strong>[X]</strong><span>Centers advised</span></div>
+            <div><strong>750+</strong><span>Miles flown for one client</span></div>
+            <div><strong>[X]</strong><span>Store owners mentored</span></div>
             <div><strong>[X]yrs</strong><span>In the industry</span></div>
-            <div><strong>[X]%</strong><span>Avg. margin lift</span></div>
           </div>
         </div>
       </div>
@@ -914,9 +1009,41 @@
         <span class="label">Delivery confirmation</span>
         <h2>What owners are saying</h2>
       </div>
-      <div class="postcard reveal">
-        <blockquote>"We were about to sign a lease at $35,000 a year. After working through the numbers together, we renegotiated down to $10,000. That single call paid for years of consulting."</blockquote>
-        <cite>— Bsarida Tran, Mail Center Owner</cite>
+      <div class="postcard-list">
+        <details class="postcard postcard-details reveal">
+          <summary>
+            <blockquote class="teaser">"Working with Anthony has truly been one of the best decisions I've made as a new business owner... he flew over 750 miles to spend several days in my store."</blockquote>
+            <cite>— Bsarida Tran, Mail Center Owner <span class="read-more">Read full story →</span></cite>
+          </summary>
+          <div class="postcard-full">
+            <p>He flew over 750 miles to spend several days in my store, walking me through systems like Postalmate and Cashmate, guiding me through real customer interactions, and making sure I avoided costly mistakes.</p>
+            <p>With his expertise, I was able to negotiate my store purchase down from $35K to just $10K as an asset sale — something I could never have accomplished on my own. He even helped me sign up my very first PMB customer before he left.</p>
+            <p>Anthony's mentorship is purposeful, patient, and filled with real-world knowledge. Every moment with him was intentional — setting goals, creating strategies, and building the confidence I needed to succeed.</p>
+          </div>
+        </details>
+
+        <details class="postcard postcard-details reveal">
+          <summary>
+            <blockquote class="teaser">"I'm beyond grateful for the incredible mentorship Anthony has provided me. His unmatched expertise has completely transformed the way I run my business."</blockquote>
+            <cite>— Romelyn Losner, Mail Center Owner <span class="read-more">Read full story →</span></cite>
+          </summary>
+          <div class="postcard-full">
+            <p>Anthony doesn't just share knowledge — he invests in your growth, challenges you to aim higher, and equips you with practical tools to succeed.</p>
+            <p>Because of Anthony's guidance, I've streamlined my operations, improved customer satisfaction, and grown more confident as a business owner. His passion for excellence and willingness to share his experience make him an extraordinary mentor.</p>
+          </div>
+        </details>
+
+        <details class="postcard postcard-details reveal">
+          <summary>
+            <blockquote class="teaser">"Anthony and his team at Ship Utah have truly gone above and beyond in his mentorship, guiding me through this entire process — from formation to location."</blockquote>
+            <cite>— Abigail Hernandez, Mail Center Owner <span class="read-more">Read full story →</span></cite>
+          </summary>
+          <div class="postcard-full">
+            <p>From the very beginning, he made sure I didn't just settle for any location, but helped me find the right one — carefully looking at demographics, traffic flow, and long-term growth. He walked me through the LOI step by step and guided me through lease negotiations, where he even helped me secure free rent periods.</p>
+            <p>His support didn't stop there — he's been right by my side with build-out questions, even stepping in to communicate with my contractor so I never felt overwhelmed or alone. Every question I had, he answered with patience and depth.</p>
+            <p>His insight, persistence, and encouragement have shaped not only where I chose to open, but how prepared and confident I feel stepping into ownership.</p>
+          </div>
+        </details>
       </div>
     </div>
   </section>
@@ -925,45 +1052,45 @@
     <div class="wrap">
       <div class="section-head reveal">
         <span class="label">Shipping speed — choose your service level</span>
-        <h2>Pricing</h2>
-        <p>Every engagement starts with a call — these are starting points, not fixed quotes. Replace with your real rates.</p>
+        <h2>Popular packages</h2>
+        <p>Our three most-booked services. Full details and the rest of the lineup are in the manifest above.</p>
       </div>
       <div class="tiers">
         <div class="tier reveal">
           <span class="tier-speed">Standard</span>
-          <h3>PostalMate Audit</h3>
-          <div class="tier-price">$[XXX]<small>one-time</small></div>
-          <p class="tier-desc">A single deep audit of your software setup and pricing rules.</p>
+          <h3>PostalMate Profit Maximizer</h3>
+          <div class="tier-price">$1,997<small>one-time fee, remote, one day</small></div>
+          <p class="tier-desc">Complete setup and optimization of PostalMate, CashMate, and mailboxes to maximize daily profit.</p>
           <ul>
-            <li>Full PostalMate &amp; CashMate review</li>
-            <li>Pricing rule rebuild</li>
-            <li>Written report + walkthrough call</li>
+            <li>Optimized pricing best practices</li>
+            <li>Inventory &amp; department setup</li>
+            <li>Boosts resale value of your business</li>
           </ul>
-          <a href="#book" class="btn btn-ghost">Get started</a>
+          <a href="https://shiputahconsulting.com/postalmate-profit-maximizer-checkout-8487" target="_blank" rel="noopener" class="btn btn-ghost">Purchase now</a>
         </div>
         <div class="tier featured reveal">
           <span class="tier-speed">Express</span>
-          <h3>Elite Mentorship</h3>
-          <div class="tier-price">$[XXX]<small>/month</small></div>
-          <p class="tier-desc">Ongoing coaching for owners who want a standing partner in the business.</p>
+          <h3>Elite Membership</h3>
+          <div class="tier-price">$5,997<small>6-month membership, payment plans available</small></div>
+          <p class="tier-desc">1:1 mentorship for owners who want an ongoing partner in the business.</p>
           <ul>
-            <li>Everything in Standard</li>
-            <li>Twice-monthly strategy calls</li>
-            <li>Direct message access</li>
+            <li>4 monthly 1:1 video calls</li>
+            <li>Weekly group calls &amp; goal-setting</li>
+            <li>Private members community</li>
           </ul>
-          <a href="#book" class="btn btn-primary">Get started</a>
+          <a href="https://shiputahconsulting.com/payment-type" target="_blank" rel="noopener" class="btn btn-primary">Become a member</a>
         </div>
         <div class="tier reveal">
           <span class="tier-speed">Priority</span>
           <h3>Store Buildout</h3>
-          <div class="tier-price">Custom<small>quoted per project</small></div>
-          <p class="tier-desc">Layout, lease negotiation, and contractor coordination end-to-end.</p>
+          <div class="tier-price">$14,997+<small>starting price · quoted per project</small></div>
+          <p class="tier-desc">Layout, sourcing, and full installation — from an empty space to an opened store.</p>
           <ul>
-            <li>Site &amp; lease review</li>
-            <li>Layout &amp; equipment planning</li>
-            <li>Contractor coordination</li>
+            <li>Design &amp; material sourcing</li>
+            <li>Customer stations &amp; mailbox install</li>
+            <li>Travel &amp; lodging included</li>
           </ul>
-          <a href="#book" class="btn btn-ghost">Request a quote</a>
+          <a href="https://shiputahconsulting.com/store-buildout-consultation-checkout" target="_blank" rel="noopener" class="btn btn-ghost">Book consultation</a>
         </div>
       </div>
     </div>
@@ -1048,9 +1175,10 @@
     <div class="chat-body" id="chatBody">
       <div class="msg bot">Hi! I'm the Ship Utah packing assistant 📦 Ask me about pricing, PostalMate, buildouts, or booking a call.</div>
       <div class="chat-suggestions" id="chatSuggestions">
-        <button type="button" data-q="How much does this cost?">Pricing</button>
-        <button type="button" data-q="What is the PostalMate audit?">PostalMate audit</button>
-        <button type="button" data-q="Do I need to already own a mail center?">New owners</button>
+        <button type="button" data-q="How much does everything cost?">Pricing</button>
+        <button type="button" data-q="What is Elite Membership?">Elite Membership</button>
+        <button type="button" data-q="What is the PostalMate Profit Maximizer?">PostalMate</button>
+        <button type="button" data-q="How does Store Buildout work?">Store buildout</button>
         <button type="button" data-q="How do I book a call?">Book a call</button>
       </div>
     </div>
@@ -1138,27 +1266,31 @@
   (function(){
     var faqData = [
       { kw:['price','pricing','cost','how much','rate','fee'],
-        a:"Pricing depends on the service: PostalMate audits are one-time, Elite Mentorship is monthly, and buildouts are quoted per project. See the Pricing section above, or book a call for an exact number." },
-      { kw:['postalmate','cashmate','software','audit'],
-        a:"The PostalMate Profit Maximizer is a full audit of your PostalMate & CashMate setup — pricing rules, reporting, and package tracking — rebuilt to surface the numbers that drive decisions." },
-      { kw:['mentorship','coaching','ongoing','mentor'],
-        a:"Elite Mentorship is ongoing 1:1 coaching — twice-monthly strategy calls plus direct message access, for owners who want a standing partner in the business." },
+        a:"Pricing depends on the service: Elite Membership is $5,997/6 months, In-Store Training is $997&ndash;$1,497/day, PostalMate Masterclass is $1,297, PostalMate Profit Maximizer is $1,997, Store Buildout starts at $14,997, and Google Business Profile is $197. Full details are in the Services section above." },
+      { kw:['postalmate','cashmate','audit','software'],
+        a:"There are two PostalMate options: the Masterclass ($1,297) is a full walk-through of how the software works, and the Profit Maximizer ($1,997) is a complete setup and optimization of PostalMate, CashMate, and mailboxes to maximize profit." },
+      { kw:['mentorship','coaching','ongoing','mentor','elite','membership'],
+        a:"Elite Membership is $5,997 for a 6-month 1:1 mentorship — weekly video calls, goal setting, industry insights, and a private members community. Payment plans are available." },
+      { kw:['in-store','in store','training','hands on','hands-on'],
+        a:"In-Store Training happens at Ship Utah in person — $997/day for Elite members, $1,497/day otherwise. We recommend 3&ndash;5 days for real-world experience with packing, systems, and customer service." },
       { kw:['buildout','build out','lease','layout','store design','contractor','new location','open a store','opening'],
-        a:"Store Design & Buildout covers layout planning, lease negotiation, and contractor coordination for a new or reworked location. It's quoted per project after a site review." },
+        a:"Store Buildout starts at $14,997 and covers design, material sourcing, and full installation — customer stations, mailbox holders, and package shelving — with travel and lodging included. It starts with a $199 consultation, credited toward the total if you move forward." },
+      { kw:['google','business profile','gbp'],
+        a:"The Google Business Profile package is $197 &mdash; a full profile audit, optimization, photo setup, and review-management strategy." },
       { kw:['own','already','new owner','starting','start','don\u2019t have','dont have'],
         a:"You don't need to already own a mail center. We work with owners at every stage, including picking a location and negotiating a first lease." },
       { kw:['book','call','schedule','appointment','meeting','consult'],
-        a:'You can book a free 30-minute strategy call any time — <a href="#book">jump to the booking section</a> and grab a time that works.' },
+        a:'You can book a free strategy call any time — <a href="#book">jump to the booking section</a> and grab a time that works.' },
       { kw:['cancel','contract','commitment','lock in'],
-        a:"No contracts — every engagement, including mentorship, can be canceled anytime." },
+        a:"No long-term contracts — Elite Membership has a flexible payment plan and most services are one-time engagements." },
       { kw:['hour','open','available','human','real person','agent'],
         a: isOnlineNow()
           ? "We're online right now — feel free to book a call or send us a message and we'll reply shortly."
           : "We're away at the moment, but leave your question here (or book a call) and we'll follow up as soon as we're back." },
-      { kw:['testimonial','review','result','success'],
-        a:"One owner renegotiated a lease from $35,000/year down to $10,000/year after a single strategy call — see the full story in the testimonial section above." }
+      { kw:['testimonial','review','result','success','anthony'],
+        a:"Store owners talk about hands-on, in-person mentorship — including one who negotiated a store purchase down from $35K to $10K. See the full stories in the testimonials section above." }
     ];
-    var fallback = 'I don\u2019t have an exact answer for that yet. Want to <a href="#book">book a strategy call</a>, or try asking about pricing, PostalMate, buildouts, or booking?';
+    var fallback = 'I don\u2019t have an exact answer for that yet. Want to <a href="#book">book a strategy call</a>, or try asking about pricing, PostalMate, training, or buildouts?';
 
     function findAnswer(text){
       var q = text.toLowerCase();
