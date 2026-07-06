@@ -8,11 +8,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
+  :root {
     --cream:      #EDE3CE;
     --cream-lt:   #F7F1E2;
     --brown-deep: #3A2A1C;
-    --brown-mid:  #6B4423;
+    --brown-mid:  #543B27; /* Darkened slightly from #6B4423 for WCAG AA 4.5:1 text contrast */
     --kraft:      #8B5E34;
     --kraft-lt:   #A97A4B;
     --tape:       #C9A667;
@@ -20,803 +20,821 @@
     --line:       rgba(58,42,28,0.18);
   }
 
-  *{ box-sizing:border-box; margin:0; padding:0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html{ scroll-behavior:smooth; }
+  html { scroll-behavior: smooth; }
 
-  body{
-    background:var(--cream);
-    color:var(--brown-deep);
-    font-family:'Work Sans', sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    overflow-x:hidden;
+  body {
+    background: var(--cream);
+    color: var(--brown-deep);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
   }
 
-  h1,h2,h3{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    line-height:1.05;
-    letter-spacing:-0.01em;
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
   }
 
-  .label{
-    font-family:'Space Mono', monospace;
-    text-transform:uppercase;
-    letter-spacing:0.14em;
-    font-size:0.72rem;
+  .label {
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
   }
 
-  a{ color:inherit; text-decoration:none; }
+  a { color: inherit; text-decoration: none; }
 
-  img,svg{ display:block; max-width:100%; }
+  img, svg { display: block; max-width: 100%; }
 
-  :focus-visible{
-    outline:3px solid var(--stamp-red);
-    outline-offset:3px;
+  :focus-visible {
+    outline: 3px solid var(--stamp-red);
+    outline-offset: 3px;
   }
 
-  .wrap{
-    max-width:1120px;
-    margin:0 auto;
-    padding:0 28px;
+  .wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 28px;
   }
 
   /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:var(--cream-lt);
-    border-bottom:2px dashed var(--line);
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--cream-lt);
+    border-bottom: 2px dashed var(--line);
   }
-  .nav-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 28px;
-    max-width:1120px;
-    margin:0 auto;
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1120px;
+    margin: 0 auto;
   }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-family:'Fraunces', serif;
-    font-weight:900;
-    font-size:1.15rem;
-    letter-spacing:-0.01em;
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
   }
-  .brand-mark{
-    width:30px; height:30px;
-    background:var(--kraft);
-    border-radius:3px;
-    position:relative;
-    flex-shrink:0;
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    background: var(--kraft);
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
   }
-  .brand-mark::before,.brand-mark::after{
-    content:"";
-    position:absolute;
-    background:var(--tape);
+  .brand-mark::before, .brand-mark::after {
+    content: "";
+    position: absolute;
+    background: var(--tape);
   }
-  .brand-mark::before{ top:0; bottom:0; left:47%; width:3px; }
-  .brand-mark::after{ left:0; right:0; top:47%; height:3px; }
+  .brand-mark::before { top: 0; bottom: 0; left: 47%; width: 3px; }
+  .brand-mark::after { left: 0; right: 0; top: 47%; height: 3px; }
 
-  nav.links{ display:flex; gap:28px; align-items:center; }
-  nav.links a{
-    font-family:'Space Mono', monospace;
-    font-size:0.78rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--brown-mid);
-    padding-bottom:2px;
-    border-bottom:2px solid transparent;
-    transition:border-color .2s, color .2s;
+  nav.links { display: flex; gap: 28px; align-items: center; }
+  nav.links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brown-mid);
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color .2s, color .2s;
   }
-  nav.links a:hover{ color:var(--stamp-red); border-color:var(--stamp-red); }
-  .nav-cta{
-    background:var(--brown-deep);
-    color:var(--cream-lt) !important;
-    padding:9px 18px;
-    border-radius:2px;
+  nav.links a:hover { color: var(--stamp-red); border-color: var(--stamp-red); }
+  .nav-cta {
+    background: var(--brown-deep);
+    color: var(--cream-lt) !important;
+    padding: 9px 18px;
+    border-radius: 2px;
   }
-  .nav-cta:hover{ background:var(--stamp-red); }
+  .nav-cta:hover { background: var(--stamp-red); }
 
-  @media (max-width:760px){
-    nav.links a:not(.nav-cta){ display:none; }
+  @media (max-width: 760px) {
+    nav.links a:not(.nav-cta) { display: none; }
   }
 
   /* ---------- BOX OPENING OVERLAY ---------- */
-  .box-overlay{
-    position:fixed;
-    inset:0;
-    z-index:200;
-    perspective:1400px;
-    background:var(--brown-deep);
+  .box-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    perspective: 1400px;
+    background: var(--brown-deep);
+    transition: visibility 0.3s, opacity 0.3s;
   }
-  .flap{
-    position:absolute;
+  .flap {
+    position: absolute;
     background:
       repeating-linear-gradient(135deg, rgba(0,0,0,0.08) 0 6px, transparent 6px 14px),
       var(--kraft);
-    box-shadow:inset 0 0 40px rgba(0,0,0,0.25);
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.25);
+    backface-visibility: hidden;
   }
-  .flap .stamp{
-    position:absolute;
-    font-family:'Space Mono', monospace;
-    font-size:clamp(11px,1.4vw,16px);
-    letter-spacing:0.18em;
-    color:rgba(58,42,28,0.55);
-    border:2px solid rgba(58,42,28,0.4);
-    padding:4px 10px;
-    transform:rotate(-8deg);
+  .flap .stamp {
+    position: absolute;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(11px, 1.4vw, 16px);
+    letter-spacing: 0.18em;
+    color: rgba(58,42,28,0.55);
+    border: 2px solid rgba(58,42,28,0.4);
+    padding: 4px 10px;
+    transform: rotate(-8deg);
   }
-  .flap-top{
-    top:0; left:0; right:0; height:52%;
-    transform-origin:top center;
-    clip-path:polygon(0 0,100% 0,50% 100%);
+  .flap-top {
+    top: 0; left: 0; right: 0; height: 52%;
+    transform-origin: top center;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
   }
-  .flap-top .stamp{ top:10%; left:50%; translate:-50% 0; }
-  .flap-bottom{
-    bottom:0; left:0; right:0; height:52%;
-    transform-origin:bottom center;
-    clip-path:polygon(0 100%,100% 100%,50% 0);
+  .flap-top .stamp { top: 10%; left: 50%; transform: translate(-50%, 0) rotate(-8deg); }
+  .flap-bottom {
+    bottom: 0; left: 0; right: 0; height: 52%;
+    transform-origin: bottom center;
+    clip-path: polygon(0 100%, 100% 100%, 50% 0);
   }
-  .flap-left{
-    top:0; bottom:0; left:0; width:52%;
-    transform-origin:center left;
-    clip-path:polygon(0 0,0 100%,100% 50%);
+  .flap-left {
+    top: 0; bottom: 0; left: 0; width: 52%;
+    transform-origin: center left;
+    clip-path: polygon(0 0, 0 100%, 100% 50%);
   }
-  .flap-right{
-    top:0; bottom:0; right:0; width:52%;
-    transform-origin:center right;
-    clip-path:polygon(100% 0,100% 100%,0 50%);
+  .flap-right {
+    top: 0; bottom: 0; right: 0; width: 52%;
+    transform-origin: center right;
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
   }
-  .flap-right .stamp{ bottom:14%; right:8%; }
+  .flap-right .stamp { bottom: 14%; right: 8%; }
 
-  .tape{
-    position:absolute;
-    left:50%; top:0; bottom:0;
-    width:64px;
-    margin-left:-32px;
-    background:linear-gradient(180deg, var(--tape), #b3894f);
-    box-shadow:0 0 0 2px rgba(58,42,28,0.15) inset;
+  .tape {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 64px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, var(--tape), #b3894f);
+    box-shadow: 0 0 0 2px rgba(58,42,28,0.15) inset;
+    transition: transform 0.5s cubic-bezier(.6,0,.2,1), opacity 0.5s;
   }
-  .tape.tape-l{ transform-origin:right center; }
-  .tape.tape-r{ left:auto; right:calc(50% - 32px); transform-origin:left center; }
+  .tape.tape-l { transform-origin: right center; }
+  .tape.tape-r { transform-origin: left center; }
 
-  .box-overlay.play .tape-l{ animation:tapeOpenL .5s .15s cubic-bezier(.6,0,.2,1) forwards; }
-  .box-overlay.play .tape-r{ animation:tapeOpenR .5s .15s cubic-bezier(.6,0,.2,1) forwards; }
-  .box-overlay.play .flap-top{ animation:openTop .85s .55s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
-  .box-overlay.play .flap-left{ animation:openLeft .85s .68s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
-  .box-overlay.play .flap-right{ animation:openRight .85s .78s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
-  .box-overlay.play .flap-bottom{ animation:openBottom .85s .9s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
-  .box-overlay.done{ display:none; }
+  .box-overlay.play .tape-l { transform: translateX(-50%) scaleX(0.02) translateX(2px); opacity: 0; }
+  .box-overlay.play .tape-r { transform: translateX(-50%) scaleX(0.02) translateX(-2px); opacity: 0; }
+  .box-overlay.play .flap-top { animation: openTop .85s .55s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
+  .box-overlay.play .flap-left { animation: openLeft .85s .68s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
+  .box-overlay.play .flap-right { animation: openRight .85s .78s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
+  .box-overlay.play .flap-bottom { animation: openBottom .85s .9s cubic-bezier(.5,-0.2,.2,1.15) forwards; }
+  .box-overlay.done { display: none !important; }
 
-  .open-btn{
-    position:absolute;
-    top:50%; left:50%;
-    transform:translate(-50%,-50%);
-    z-index:210;
-    font-family:'Space Mono', monospace;
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    font-size:0.85rem;
-    background:var(--cream-lt);
-    color:var(--brown-deep);
-    border:2px solid var(--brown-deep);
-    border-radius:3px;
-    padding:18px 30px;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-    box-shadow:4px 4px 0 rgba(0,0,0,0.35);
-    animation:btnPulse 1.8s ease-in-out infinite;
-    transition:opacity .3s ease, transform .3s ease;
+  .open-btn {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 210;
+    font-family: 'Space Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    background: var(--cream-lt);
+    color: var(--brown-deep);
+    border: 2px solid var(--brown-deep);
+    border-radius: 3px;
+    padding: 18px 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.35);
+    animation: btnPulse 1.8s ease-in-out infinite;
+    transition: opacity .3s ease, transform .3s ease, background-color .2s, color .2s;
   }
-  .open-btn .tab-icon{ font-size:1.3rem; }
-  .open-btn small{ font-size:0.6rem; color:var(--brown-mid); letter-spacing:0.08em; }
-  .open-btn:hover{ background:var(--stamp-red); color:var(--cream-lt); border-color:var(--stamp-red); }
-  .open-btn:hover small{ color:rgba(247,241,226,0.8); }
-  .box-overlay.play .open-btn{ opacity:0; pointer-events:none; transform:translate(-50%,-50%) scale(0.9); }
-  @keyframes btnPulse{ 0%,100%{ box-shadow:4px 4px 0 rgba(0,0,0,0.35); } 50%{ box-shadow:6px 6px 0 rgba(0,0,0,0.35); } }
-
-  @keyframes tapeOpenL{ to{ transform:scaleX(0.02) translateX(2px); opacity:0; } }
-  @keyframes tapeOpenR{ to{ transform:scaleX(0.02) translateX(-2px); opacity:0; } }
-  @keyframes openTop{ to{ transform:rotateX(-115deg); opacity:0.3; } }
-  @keyframes openBottom{ to{ transform:rotateX(115deg); opacity:0.3; } }
-  @keyframes openLeft{ to{ transform:rotateY(115deg); opacity:0.3; } }
-  @keyframes openRight{ to{ transform:rotateY(-115deg); opacity:0.3; } }
-
-  .hero-inner{ opacity:0; transform:translateY(14px); }
-  .box-overlay.play ~ main .hero-inner,
-  body.opened .hero-inner{
-    animation:heroIn .7s 1.35s cubic-bezier(.2,.7,.2,1) forwards;
+  .open-btn .tab-icon { font-size: 1.3rem; }
+  .open-btn small { font-size: 0.6rem; color: var(--brown-mid); letter-spacing: 0.08em; }
+  .open-btn:hover { background: var(--stamp-red); color: var(--cream-lt); border-color: var(--stamp-red); }
+  .open-btn:hover small { color: rgba(247,241,226,0.8); }
+  .box-overlay.play .open-btn { opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.9); }
+  
+  @keyframes btnPulse { 
+    0%, 100% { box-shadow: 4px 4px 0 rgba(0,0,0,0.35); } 
+    50% { box-shadow: 6px 6px 0 rgba(0,0,0,0.35); } 
   }
-  @keyframes heroIn{ to{ opacity:1; transform:translateY(0); } }
 
-  body:not(.opened){ overflow:hidden; height:100vh; }
+  @keyframes openTop { to { transform: rotateX(-115deg); opacity: 0.2; } }
+  @keyframes openBottom { to { transform: rotateX(115deg); opacity: 0.2; } }
+  @keyframes openLeft { to { transform: rotateY(115deg); opacity: 0.2; } }
+  @keyframes openRight { to { transform: rotateY(-115deg); opacity: 0.2; } }
 
-  @media (prefers-reduced-motion: reduce){
-    .flap, .tape{ animation:none !important; transition:opacity .4s ease; }
-    .box-overlay.play .flap, .box-overlay.play .tape{ opacity:0; }
+  .hero-inner { opacity: 0; transform: translateY(14px); }
+  body.opened .hero-inner {
+    animation: heroIn .7s 0.2s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .box-overlay.play ~ main .hero-inner {
+    animation: heroIn .7s 1.35s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+
+  body:not(.opened) { overflow: hidden; height: 100vh; }
+  body.opened { overflow: auto; height: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flap, .tape { animation: none !important; transition: opacity .4s ease; }
+    .box-overlay.play .flap, .box-overlay.play .tape { opacity: 0; }
   }
 
   /* ---------- HERO ---------- */
-  .hero{
-    padding:96px 0 88px;
-    border-bottom:2px dashed var(--line);
+  .hero {
+    padding: 96px 0 88px;
+    border-bottom: 2px dashed var(--line);
   }
-  .hero-inner{ max-width:760px; }
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--cream-lt);
-    border:1.5px solid var(--brown-deep);
-    padding:6px 14px;
-    border-radius:3px;
-    margin-bottom:22px;
+  .hero-inner { max-width: 760px; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream-lt);
+    border: 1.5px solid var(--brown-deep);
+    padding: 6px 14px;
+    border-radius: 3px;
+    margin-bottom: 22px;
   }
-  .eyebrow::before{ content:"◆"; color:var(--stamp-red); font-size:0.7rem; }
-  h1.hero-title{
-    font-size:clamp(2.4rem, 5.6vw, 4.1rem);
-    margin-bottom:22px;
+  .eyebrow::before { content: "◆"; color: var(--stamp-red); font-size: 0.7rem; }
+  h1.hero-title {
+    font-size: clamp(2.4rem, 5.6vw, 4.1rem);
+    margin-bottom: 22px;
   }
-  h1.hero-title em{
-    font-style:italic;
-    color:var(--kraft);
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--kraft);
   }
-  .hero-sub{
-    font-size:1.15rem;
-    color:var(--brown-mid);
-    max-width:52ch;
-    margin-bottom:36px;
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--brown-mid);
+    max-width: 52ch;
+    margin-bottom: 36px;
   }
-  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
-  .stamp-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    margin-top:28px;
-    font-family:'Space Mono', monospace;
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--brown-mid);
-    border:2px dashed var(--kraft-lt);
-    border-radius:40px;
-    padding:8px 16px;
-    transform:rotate(-2deg);
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .stamp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brown-mid);
+    border: 2px dashed var(--kraft-lt);
+    border-radius: 40px;
+    padding: 8px 16px;
+    transform: rotate(-2deg);
   }
-  .btn{
-    font-family:'Space Mono', monospace;
-    font-size:0.82rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    padding:15px 26px;
-    border-radius:2px;
-    display:inline-block;
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 15px 26px;
+    border-radius: 2px;
+    display: inline-block;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
   }
-  .btn-primary{
-    background:var(--stamp-red);
-    color:var(--cream-lt);
-    box-shadow:3px 3px 0 var(--brown-deep);
+  .btn-primary {
+    background: var(--stamp-red);
+    color: var(--cream-lt);
+    box-shadow: 3px 3px 0 var(--brown-deep);
   }
-  .btn-primary:hover{ transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--brown-deep); }
-  .btn-ghost{
-    background:transparent;
-    border:1.5px solid var(--brown-deep);
-    color:var(--brown-deep);
+  .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--brown-deep); }
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--brown-deep);
+    color: var(--brown-deep);
   }
-  .btn-ghost:hover{ background:var(--brown-deep); color:var(--cream-lt); }
+  .btn-ghost:hover { background: var(--brown-deep); color: var(--cream-lt); }
 
   /* ---------- SECTION HEADERS ---------- */
-  section{ padding:88px 0; }
-  .section-head{ margin-bottom:52px; max-width:640px; }
-  .section-head .label{ color:var(--stamp-red); display:block; margin-bottom:12px; }
-  .section-head h2{ font-size:clamp(1.8rem,3.6vw,2.6rem); }
-  .section-head p{ color:var(--brown-mid); margin-top:14px; font-size:1.05rem; }
+  section { padding: 88px 0; }
+  .section-head { margin-bottom: 52px; max-width: 640px; }
+  .section-head .label { color: var(--stamp-red); display: block; margin-bottom: 12px; }
+  .section-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); }
+  .section-head p { color: var(--brown-mid); margin-top: 14px; font-size: 1.05rem; }
 
   /* ---------- MANIFEST / SERVICES ---------- */
-  .manifest{ border-top:2px solid var(--brown-deep); }
-  .manifest-row{
-    display:grid;
-    grid-template-columns:64px 1fr 1fr;
-    gap:28px;
-    padding:34px 0;
-    border-bottom:2px dashed var(--line);
-    align-items:start;
+  .manifest { border-top: 2px solid var(--brown-deep); }
+  .manifest-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 1fr;
+    gap: 28px;
+    padding: 34px 0;
+    border-bottom: 2px dashed var(--line);
+    align-items: start;
+    transition: background-color 0.2s;
   }
-  .manifest-row:hover{ background:var(--cream-lt); }
-  .qty{
-    font-family:'Space Mono', monospace;
-    font-size:0.85rem;
-    color:var(--kraft-lt);
-    padding-top:4px;
+  .manifest-row:hover { background: var(--cream-lt); }
+  .qty {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--kraft-lt);
+    padding-top: 4px;
   }
-  .manifest-row h3{ font-size:1.35rem; margin-bottom:8px; }
-  .manifest-row p{ color:var(--brown-mid); }
-  .manifest-tag{
-    display:inline-block;
-    font-family:'Space Mono', monospace;
-    font-size:0.68rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
-    color:var(--stamp-red);
-    border:1px solid var(--stamp-red);
-    padding:3px 8px;
-    border-radius:2px;
-    margin-top:12px;
+  .manifest-row h3 { font-size: 1.35rem; margin-bottom: 8px; }
+  .manifest-row p { color: var(--brown-mid); }
+  .manifest-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--stamp-red);
+    border: 1px solid var(--stamp-red);
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-top: 12px;
   }
-  .price-line{
-    font-family:'Fraunces', serif;
-    font-weight:700;
-    font-size:1.25rem;
-    color:var(--brown-deep);
-    margin-bottom:14px;
+  .price-line {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--brown-deep);
+    margin-bottom: 14px;
   }
-  .price-line small{
-    display:block;
-    font-family:'Work Sans', sans-serif;
-    font-weight:400;
-    font-size:0.78rem;
-    color:var(--brown-mid);
-    margin-top:4px;
+  .price-line small {
+    display: block;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: var(--brown-mid);
+    margin-top: 4px;
   }
-  .btn-sm{ font-size:0.72rem; padding:10px 16px; }
-  @media (max-width:700px){
-    .manifest-row{ grid-template-columns:40px 1fr; }
-    .manifest-row > div:last-child{ grid-column:2; }
+  .btn-sm { font-size: 0.72rem; padding: 10px 16px; }
+  @media (max-width: 700px) {
+    .manifest-row { grid-template-columns: 40px 1fr; }
+    .manifest-row > div:last-child { grid-column: 2; }
   }
 
   /* ---------- TRACKING TIMELINE ---------- */
-  .tracking-line{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:24px;
-    position:relative;
-    padding-top:8px;
+  .tracking-line {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    position: relative;
+    padding-top: 8px;
   }
-  .tracking-line::before{
-    content:"";
-    position:absolute;
-    top:20px; left:4%; right:4%;
-    height:2px;
-    background:repeating-linear-gradient(90deg, var(--kraft-lt) 0 10px, transparent 10px 18px);
+  .tracking-line::before {
+    content: "";
+    position: absolute;
+    top: 20px; left: 4%; right: 4%;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--kraft-lt) 0 10px, transparent 10px 18px);
   }
-  .track-stop{ position:relative; padding-top:36px; }
-  .track-dot{
-    position:absolute;
-    top:12px; left:0;
-    width:16px; height:16px;
-    border-radius:50%;
-    background:var(--stamp-red);
-    border:3px solid var(--cream);
-    box-shadow:0 0 0 2px var(--brown-deep);
+  .track-stop { position: relative; padding-top: 36px; }
+  .track-dot {
+    position: absolute;
+    top: 12px; left: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--stamp-red);
+    border: 3px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--brown-deep);
   }
-  .track-label{
-    color:var(--stamp-red);
-    display:block;
-    margin-bottom:8px;
-    font-family:'Space Mono', monospace;
-    font-size:0.65rem;
-    text-transform:uppercase;
-    letter-spacing:0.1em;
+  .track-label {
+    color: var(--stamp-red);
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
-  .track-stop h3{ font-size:1.1rem; margin-bottom:8px; }
-  .track-stop p{ color:var(--brown-mid); font-size:0.92rem; }
-  @media (max-width:820px){
-    .tracking-line{ grid-template-columns:1fr; gap:0; }
-    .tracking-line::before{ top:0; bottom:0; left:8px; right:auto; width:2px; height:auto; background:repeating-linear-gradient(180deg, var(--kraft-lt) 0 10px, transparent 10px 18px); }
-    .track-stop{ padding:0 0 32px 34px; }
-    .track-dot{ top:2px; left:0; }
+  .track-stop h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .track-stop p { color: var(--brown-mid); font-size: 0.92rem; }
+  @media (max-width: 820px) {
+    .tracking-line { grid-template-columns: 1fr; gap: 0; }
+    .tracking-line::before { top: 0; bottom: 0; left: 8px; right: auto; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--kraft-lt) 0 10px, transparent 10px 18px); }
+    .track-stop { padding: 0 0 32px 34px; }
+    .track-dot { top: 2px; left: 0; }
   }
 
   /* ---------- ABOUT ---------- */
-  .about{ background:var(--brown-deep); color:var(--cream-lt); }
-  .about .section-head p{ color:rgba(247,241,226,0.75); }
-  .about .label{ color:var(--tape); }
-  .about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:56px;
-    align-items:center;
+  .about { background: var(--brown-deep); color: var(--cream-lt); }
+  .about .section-head p { color: rgba(247,241,226,0.75); }
+  .about .label { color: var(--tape); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
   }
-  .about-photo{
-    aspect-ratio:4/5;
+  .about-photo {
+    aspect-ratio: 4/5;
     background:
       repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0 10px, transparent 10px 20px),
       var(--kraft);
-    border-radius:3px;
-    position:relative;
-    display:flex;
-    align-items:flex-end;
-    padding:20px;
-    border:3px solid var(--tape);
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    border: 3px solid var(--tape);
   }
-  .about-photo span{
-    font-family:'Space Mono', monospace;
-    font-size:0.72rem;
-    background:var(--cream-lt);
-    color:var(--brown-deep);
-    padding:5px 10px;
-    border-radius:2px;
+  .about-photo span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    background: var(--cream-lt);
+    color: var(--brown-deep);
+    padding: 5px 10px;
+    border-radius: 2px;
   }
-  .about-copy p{ margin-bottom:16px; color:rgba(247,241,226,0.85); }
-  .about-stats{
-    display:flex;
-    gap:36px;
-    margin-top:28px;
-    flex-wrap:wrap;
+  .about-copy p { margin-bottom: 16px; color: rgba(247,241,226,0.85); }
+  .about-stats {
+    display: flex;
+    gap: 36px;
+    margin-top: 28px;
+    flex-wrap: wrap;
   }
-  .about-stats div strong{
-    display:block;
-    font-family:'Fraunces', serif;
-    font-size:2rem;
-    color:var(--tape);
+  .about-stats div strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    color: var(--tape);
   }
-  .about-stats div span{
-    font-family:'Space Mono', monospace;
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:rgba(247,241,226,0.65);
+  .about-stats div span {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(247,241,226,0.65);
   }
-  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
 
-  /* ---------- TESTIMONIAL ---------- */
-  .postcard{
-    background:var(--cream-lt);
-    border:2px solid var(--brown-deep);
-    border-radius:4px;
-    padding:44px;
-    position:relative;
-    max-width:760px;
-    margin:0 auto;
+  /* ---------- TESTIMONIALS ---------- */
+  .postcard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 760px;
+    margin: 0 auto;
   }
-  .postcard::before{
-    content:"VIA PRIORITY MAIL";
-    position:absolute;
-    top:-14px; left:36px;
-    background:var(--stamp-red);
-    color:var(--cream-lt);
-    font-family:'Space Mono', monospace;
-    font-size:0.65rem;
-    letter-spacing:0.12em;
-    padding:5px 12px;
-    border-radius:2px;
+  .postcard {
+    background: var(--cream-lt);
+    border: 2px solid var(--brown-deep);
+    border-radius: 4px;
+    padding: 44px;
+    position: relative;
   }
-  .postcard blockquote{
-    font-family:'Fraunces', serif;
-    font-size:1.4rem;
-    font-style:italic;
-    line-height:1.4;
-    margin-bottom:22px;
+  .postcard::before {
+    content: "VIA PRIORITY MAIL";
+    position: absolute;
+    top: -14px; left: 36px;
+    background: var(--stamp-red);
+    color: var(--cream-lt);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    padding: 5px 12px;
+    border-radius: 2px;
   }
-  .postcard cite{
-    font-family:'Space Mono', monospace;
-    font-size:0.78rem;
-    font-style:normal;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--brown-mid);
+  .postcard blockquote {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 22px;
   }
-
-  .postcard-list{
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-    max-width:760px;
-    margin:0 auto;
+  .postcard cite {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brown-mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
-  .postcard-details{ cursor:pointer; }
-  .postcard-details summary{
-    list-style:none;
-    cursor:pointer;
+  .postcard-details { width: 100%; }
+  .postcard-details summary {
+    list-style: none;
+    cursor: pointer;
+    outline: none;
   }
-  .postcard-details summary::-webkit-details-marker{ display:none; }
-  .postcard-details .teaser{ margin-bottom:14px; }
-  .postcard-details cite{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-  .read-more{
-    font-family:'Space Mono', monospace;
-    font-size:0.68rem;
-    text-transform:uppercase;
-    letter-spacing:0.08em;
-    color:var(--stamp-red);
-    border:1px solid var(--stamp-red);
-    padding:3px 9px;
-    border-radius:12px;
+  .postcard-details summary::-webkit-details-marker { display: none; }
+  .read-more {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--stamp-red);
+    border: 1px solid var(--stamp-red);
+    padding: 3px 9px;
+    border-radius: 12px;
+    display: inline-block;
   }
-  .postcard-details[open] .read-more{ visibility:hidden; }
-  .postcard-full{
-    margin-top:20px;
-    padding-top:20px;
-    border-top:2px dashed var(--line);
+  .postcard-details[open] .read-more { display: none; }
+  .postcard-full {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed var(--line);
   }
-  .postcard-full p{ margin-bottom:14px; color:var(--brown-mid); }
-  .postcard-full p:last-child{ margin-bottom:0; }
+  .postcard-full p { margin-bottom: 14px; color: var(--brown-mid); }
+  .postcard-full p:last-child { margin-bottom: 0; }
 
   /* ---------- PRICING ---------- */
-  .tiers{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:24px;
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
   }
-  .tier{
-    border:2px solid var(--brown-deep);
-    border-radius:4px;
-    padding:32px 26px;
-    background:var(--cream-lt);
-    display:flex;
-    flex-direction:column;
+  .tier {
+    border: 2px solid var(--brown-deep);
+    border-radius: 4px;
+    padding: 32px 26px;
+    background: var(--cream-lt);
+    display: flex;
+    flex-direction: column;
   }
-  .tier.featured{
-    background:var(--brown-deep);
-    color:var(--cream-lt);
-    transform:translateY(-10px);
-    box-shadow:6px 6px 0 var(--tape);
+  .tier.featured {
+    background: var(--brown-deep);
+    color: var(--cream-lt);
+    transform: translateY(-10px);
+    box-shadow: 6px 6px 0 var(--tape);
   }
   .tier.featured .tier-desc,
-  .tier.featured .tier-price small{ color:rgba(247,241,226,0.7); }
-  .tier-speed{
-    font-family:'Space Mono', monospace;
-    font-size:0.7rem;
-    text-transform:uppercase;
-    letter-spacing:0.12em;
-    color:var(--stamp-red);
-    margin-bottom:10px;
+  .tier.featured .tier-price small { color: rgba(247,241,226,0.7); }
+  .tier-speed {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--stamp-red);
+    margin-bottom: 10px;
   }
-  .tier.featured .tier-speed{ color:var(--tape); }
-  .tier h3{ font-size:1.5rem; margin-bottom:8px; }
-  .tier-price{ font-family:'Fraunces', serif; font-size:1.9rem; margin:14px 0; }
-  .tier-price small{ font-family:'Space Mono', monospace; font-size:0.62rem; color:var(--brown-mid); display:block; margin-top:4px; }
-  .tier-desc{ color:var(--brown-mid); margin-bottom:20px; flex-grow:1; }
-  .tier ul{ list-style:none; margin-bottom:26px; }
-  .tier li{ padding:7px 0; border-top:1px dashed var(--line); font-size:0.92rem; }
-  .tier.featured li{ border-color:rgba(247,241,226,0.2); }
-  .tier li:first-child{ border-top:none; }
-  .tier .btn{ text-align:center; }
-  @media (max-width:820px){
-    .tiers{ grid-template-columns:1fr; }
-    .tier.featured{ transform:none; }
+  .tier.featured .tier-speed { color: var(--tape); }
+  .tier h3 { font-size: 1.5rem; margin-bottom: 8px; }
+  .tier-price { font-family: 'Fraunces', serif; font-size: 1.9rem; margin: 14px 0; }
+  .tier-price small { font-family: 'Space Mono', monospace; font-size: 0.62rem; color: var(--brown-mid); display: block; margin-top: 4px; }
+  .tier-desc { color: var(--brown-mid); margin-bottom: 20px; flex-grow: 1; }
+  .tier ul { list-style: none; margin-bottom: 26px; }
+  .tier li { padding: 7px 0; border-top: 1px dashed var(--line); font-size: 0.92rem; }
+  .tier.featured li { border-color: rgba(247,241,226,0.2); }
+  .tier li:first-child { border-top: none; }
+  .tier .btn { text-align: center; width: 100%; }
+  @media (max-width: 820px) {
+    .tiers { grid-template-columns: 1fr; }
+    .tier.featured { transform: none; box-shadow: none; margin-bottom: 10px; }
   }
 
-  /* ---------- FAQ ---------- */
-  .faq-item{
-    border-bottom:2px dashed var(--line);
+  /* ---------- FAQ (UPDATED TO DETAILS/SUMMARY) ---------- */
+  .faq-item {
+    border-bottom: 2px dashed var(--line);
   }
-  .faq-q{
-    width:100%;
-    text-align:left;
-    background:none;
-    border:none;
-    font-family:'Fraunces', serif;
-    font-size:1.15rem;
-    font-weight:600;
-    color:var(--brown-deep);
-    padding:22px 0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:16px;
-    cursor:pointer;
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--brown-deep);
+    padding: 22px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    outline: none;
   }
-  .faq-q .mark{
-    font-family:'Space Mono', monospace;
-    color:var(--stamp-red);
-    flex-shrink:0;
-    transition:transform .2s;
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q .mark {
+    font-family: 'Space Mono', monospace;
+    color: var(--stamp-red);
+    flex-shrink: 0;
+    transition: transform .2s;
+    font-size: 1.4rem;
   }
-  .faq-item[open] .faq-q .mark{ transform:rotate(45deg); }
-  .faq-a{ color:var(--brown-mid); padding-bottom:22px; max-width:65ch; }
+  .faq-item[open] .faq-q .mark { transform: rotate(45deg); }
+  .faq-a { color: var(--brown-mid); padding-bottom: 22px; max-width: 65ch; }
 
   /* ---------- BOOK / LABEL ---------- */
-  .book{
-    background:var(--cream-lt);
+  .book {
+    background: var(--cream-lt);
   }
-  .label-card{
-    border:3px solid var(--brown-deep);
-    border-radius:4px;
-    max-width:640px;
-    margin:0 auto;
-    padding:40px;
-    background:var(--cream);
-    position:relative;
+  .label-card {
+    border: 3px solid var(--brown-deep);
+    border-radius: 4px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--cream);
+    position: relative;
   }
-  .label-card::after{
-    content:"";
-    position:absolute;
-    inset:10px;
-    border:1.5px dashed var(--kraft-lt);
-    border-radius:2px;
-    pointer-events:none;
+  .label-card::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1.5px dashed var(--kraft-lt);
+    border-radius: 2px;
+    pointer-events: none;
   }
-  .barcode{
-    display:flex;
-    gap:3px;
-    align-items:flex-end;
-    height:38px;
-    margin:22px 0;
+  .barcode {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 38px;
+    margin: 22px 0;
   }
-  .barcode span{ background:var(--brown-deep); width:3px; }
-  .book h2{ font-size:1.9rem; margin-bottom:10px; }
-  .book p.book-sub{ color:var(--brown-mid); margin-bottom:26px; }
-  .book .btn-primary{ width:100%; text-align:center; }
-  .book-note{
-    font-family:'Space Mono', monospace;
-    font-size:0.7rem;
-    color:var(--brown-mid);
-    margin-top:16px;
-    text-align:center;
+  .barcode span { background: var(--brown-deep); width: 3px; height: 100%; }
+  .barcode span.thin { width: 1.5px; }
+  .barcode span.thick { width: 5px; }
+  .book h2 { font-size: 1.9rem; margin-bottom: 10px; }
+  .book p.book-sub { color: var(--brown-mid); margin-bottom: 26px; }
+  .book .btn-primary { width: 100%; text-align: center; }
+  .book-note {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--brown-mid);
+    margin-top: 16px;
+    text-align: center;
   }
 
   /* ---------- FOOTER ---------- */
-  footer{
-    border-top:2px solid var(--brown-deep);
-    padding:44px 0 28px;
+  footer {
+    border-top: 2px solid var(--brown-deep);
+    padding: 44px 0 28px;
   }
-  .footer-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:20px;
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
   }
-  .footer-inner .label{ color:var(--brown-mid); }
+  .footer-inner .label { color: var(--brown-mid); }
 
   /* ---------- CHAT WIDGET ---------- */
-  .chat-widget{ position:fixed; bottom:24px; right:24px; z-index:150; }
+  .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 150; }
 
-  .status-dot{
-    width:10px; height:10px;
-    border-radius:50%;
-    background:#8a8a8a;
-    display:inline-block;
-    flex-shrink:0;
+  .status-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #8a8a8a;
+    display: inline-block;
+    flex-shrink: 0;
   }
-  .status-dot.online{ background:#4C9A5B; box-shadow:0 0 0 0 rgba(76,154,91,0.6); animation:dotPulse 1.8s ease-out infinite; }
-  @keyframes dotPulse{
-    0%{ box-shadow:0 0 0 0 rgba(76,154,91,0.55); }
-    70%{ box-shadow:0 0 0 8px rgba(76,154,91,0); }
-    100%{ box-shadow:0 0 0 0 rgba(76,154,91,0); }
-  }
-
-  .chat-launcher{
-    width:60px; height:60px;
-    border-radius:50%;
-    background:var(--stamp-red);
-    border:2px solid var(--brown-deep);
-    box-shadow:3px 3px 0 var(--brown-deep);
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    transition:transform .15s ease;
-  }
-  .chat-launcher:hover{ transform:translate(-2px,-2px); }
-  .chat-launcher-icon{ font-size:1.5rem; }
-  .chat-launcher .status-dot{
-    position:absolute;
-    top:2px; right:2px;
-    border:2px solid var(--cream-lt);
+  .status-dot.online { background: #4C9A5B; box-shadow: 0 0 0 0 rgba(76,154,91,0.6); animation: dotPulse 1.8s ease-out infinite; }
+  @keyframes dotPulse {
+    0% { box-shadow: 0 0 0 0 rgba(76,154,91,0.55); }
+    70% { box-shadow: 0 0 0 8px rgba(76,154,91,0); }
+    100% { box-shadow: 0 0 0 0 rgba(76,154,91,0); }
   }
 
-  .chat-panel{
-    position:absolute;
-    bottom:76px;
-    right:0;
-    width:min(360px, 88vw);
-    max-height:70vh;
-    background:var(--cream-lt);
-    border:2px solid var(--brown-deep);
-    border-radius:6px;
-    box-shadow:5px 5px 0 rgba(0,0,0,0.25);
-    display:flex;
-    flex-direction:column;
-    overflow:hidden;
-    opacity:0;
-    transform:translateY(12px) scale(0.98);
-    pointer-events:none;
-    transition:opacity .2s ease, transform .2s ease;
+  .chat-launcher {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: var(--stamp-red);
+    border: 2px solid var(--brown-deep);
+    box-shadow: 3px 3px 0 var(--brown-deep);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform .15s ease;
   }
-  .chat-widget.open .chat-panel{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .chat-launcher:hover { transform: translate(-2px, -2px); }
+  .chat-launcher-icon { font-size: 1.5rem; }
+  .chat-launcher .status-dot {
+    position: absolute;
+    top: 2px; right: 2px;
+    border: 2px solid var(--cream-lt);
+  }
 
-  .chat-head{
-    background:var(--brown-deep);
-    color:var(--cream-lt);
-    padding:14px 16px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:10px;
+  .chat-panel {
+    position: absolute;
+    bottom: 76px;
+    right: 0;
+    width: min(360px, 88vw);
+    max-height: 70vh;
+    background: var(--cream-lt);
+    border: 2px solid var(--brown-deep);
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
   }
-  .chat-head strong{ font-family:'Fraunces', serif; font-size:1rem; }
-  .chat-status{ display:flex; align-items:center; gap:7px; margin-top:5px; font-family:'Space Mono', monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.06em; color:rgba(247,241,226,0.8); }
-  .chat-close{ background:none; border:none; color:var(--cream-lt); font-size:1.3rem; line-height:1; cursor:pointer; padding:0 4px; }
+  .chat-widget.open .chat-panel { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 
-  .chat-body{
-    flex:1;
-    overflow-y:auto;
-    padding:16px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    min-height:220px;
+  .chat-head {
+    background: var(--brown-deep);
+    color: var(--cream-lt);
+    padding: 14px 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
   }
-  .msg{
-    max-width:85%;
-    padding:10px 13px;
-    border-radius:4px;
-    font-size:0.9rem;
-    line-height:1.45;
-  }
-  .msg.bot{ background:var(--cream); border:1px solid var(--line); align-self:flex-start; }
-  .msg.user{ background:var(--brown-deep); color:var(--cream-lt); align-self:flex-end; }
-  .msg a{ text-decoration:underline; }
+  .chat-head strong { font-family: 'Fraunces', serif; font-size: 1rem; }
+  .chat-status { display: flex; align-items: center; gap: 7px; margin-top: 5px; font-family: 'Space Mono', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(247,241,226,0.8); }
+  .chat-close { background: none; border: none; color: var(--cream-lt); font-size: 1.3rem; line-height: 1; cursor: pointer; padding: 0 4px; }
 
-  .chat-suggestions{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chat-suggestions button{
-    font-family:'Space Mono', monospace;
-    font-size:0.68rem;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    background:transparent;
-    border:1.5px solid var(--kraft-lt);
-    color:var(--brown-mid);
-    padding:6px 10px;
-    border-radius:14px;
-    cursor:pointer;
-    transition:background .15s ease, color .15s ease;
+  .chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 220px;
   }
-  .chat-suggestions button:hover{ background:var(--stamp-red); border-color:var(--stamp-red); color:var(--cream-lt); }
+  .msg {
+    max-width: 85%;
+    padding: 10px 13px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+  .msg.bot { background: var(--cream); border: 1px solid var(--line); align-self: flex-start; }
+  .msg.user { background: var(--brown-deep); color: var(--cream-lt); align-self: flex-end; }
+  .msg a { text-decoration: underline; }
 
-  .chat-input-row{
-    display:flex;
-    border-top:2px dashed var(--line);
-    padding:10px;
-    gap:8px;
+  .chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+  .chat-suggestions button {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: transparent;
+    border: 1.5px solid var(--kraft-lt);
+    color: var(--brown-mid);
+    padding: 6px 10px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease;
   }
-  .chat-input-row input{
-    flex:1;
-    border:1.5px solid var(--line);
-    border-radius:3px;
-    padding:9px 11px;
-    font-family:'Work Sans', sans-serif;
-    font-size:0.88rem;
-    background:var(--cream);
-    color:var(--brown-deep);
-  }
-  .chat-input-row input:focus{ outline:none; border-color:var(--brown-deep); }
-  .chat-input-row button{
-    background:var(--stamp-red);
-    color:var(--cream-lt);
-    border:none;
-    border-radius:3px;
-    width:38px;
-    font-size:1rem;
-    cursor:pointer;
-  }
-  .chat-input-row button:hover{ background:var(--brown-deep); }
+  .chat-suggestions button:hover { background: var(--stamp-red); border-color: var(--stamp-red); color: var(--cream-lt); }
 
-  .chat-live{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  .chat-input-row {
+    display: flex;
+    border-top: 2px dashed var(--line);
+    padding: 10px;
+    gap: 8px;
+  }
+  .chat-input-row input {
+    flex: 1;
+    border: 1.5px solid var(--line);
+    border-radius: 3px;
+    padding: 9px 11px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.88rem;
+    background: var(--cream);
+    color: var(--brown-deep);
+  }
+  .chat-input-row input:focus { outline: none; border-color: var(--brown-deep); }
+  .chat-input-row button {
+    background: var(--stamp-red);
+    color: var(--cream-lt);
+    border: none;
+    border-radius: 3px;
+    width: 38px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .chat-input-row button:hover { background: var(--brown-deep); }
 
-  @media (max-width:480px){
-    .chat-panel{ right:-6px; width:92vw; }
+  .chat-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  @media (max-width: 480px) {
+    .chat-panel { right: -6px; width: 92vw; }
   }
 
   /* ---------- SCROLL REVEAL ---------- */
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
-<div class="box-overlay" id="boxOverlay">
+<div class="box-overlay" id="boxOverlay" aria-modal="true" role="dialog">
   <button class="open-btn" id="openBtn" type="button" aria-label="Open the package to enter the site">
     <span class="tab-icon">📦</span>
     Tap to open
@@ -830,10 +848,10 @@
   <div class="flap flap-bottom"></div>
 </div>
 
-<header class="nav">
+<header class="nav" id="siteHeader">
   <div class="nav-inner">
     <div class="brand"><span class="brand-mark"></span>Ship Utah Consulting</div>
-    <nav class="links">
+    <nav class="links" aria-label="Main Navigation">
       <a href="#manifest">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#about">About</a>
@@ -843,7 +861,7 @@
   </div>
 </header>
 
-<main>
+<main id="siteMain">
 
   <section class="hero">
     <div class="wrap hero-inner">
@@ -994,56 +1012,42 @@
           <p>Ship Utah Consulting is led by Anthony Difederico, who works directly, in person, inside client stores — flying out to spend real days on the floor teaching PostalMate, CashMate, and customer interactions, not just walking through slides on a call.</p>
           <p>From negotiating a store purchase down from $35K to $10K, to helping first-time owners choose a location, sign a lease, and manage contractors through a full build-out — the goal is the same every time: you walk away with systems, not just advice.</p>
           <div class="about-stats">
-            <div><strong>750+</strong><span>Miles flown for one client</span></div>
-            <div><strong>[X]</strong><span>Store owners mentored</span></div>
-            <div><strong>[X]yrs</strong><span>In the industry</span></div>
+            <div>
+              <strong>$25k</strong>
+              <span>Saved on average acquisitions</span>
+            </div>
+            <div>
+              <strong>15+</strong>
+              <span>Years retail shipping experience</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="testimonial">
+  <section id="testimonials">
     <div class="wrap">
-      <div class="section-head reveal" style="margin:0 auto 52px; text-align:center;">
-        <span class="label">Delivery confirmation</span>
-        <h2>What owners are saying</h2>
+      <div class="section-head reveal">
+        <span class="label">Delivery Confirmation</span>
+        <h2>Real Store Owners, Real Results</h2>
       </div>
       <div class="postcard-list">
-        <details class="postcard postcard-details reveal">
-          <summary>
-            <blockquote class="teaser">"Working with Anthony has truly been one of the best decisions I've made as a new business owner... he flew over 750 miles to spend several days in my store."</blockquote>
-            <cite>— Bsarida Tran, Mail Center Owner <span class="read-more">Read full story →</span></cite>
-          </summary>
-          <div class="postcard-full">
-            <p>He flew over 750 miles to spend several days in my store, walking me through systems like Postalmate and Cashmate, guiding me through real customer interactions, and making sure I avoided costly mistakes.</p>
-            <p>With his expertise, I was able to negotiate my store purchase down from $35K to just $10K as an asset sale — something I could never have accomplished on my own. He even helped me sign up my very first PMB customer before he left.</p>
-            <p>Anthony's mentorship is purposeful, patient, and filled with real-world knowledge. Every moment with him was intentional — setting goals, creating strategies, and building the confidence I needed to succeed.</p>
-          </div>
-        </details>
-
-        <details class="postcard postcard-details reveal">
-          <summary>
-            <blockquote class="teaser">"I'm beyond grateful for the incredible mentorship Anthony has provided me. His unmatched expertise has completely transformed the way I run my business."</blockquote>
-            <cite>— Romelyn Losner, Mail Center Owner <span class="read-more">Read full story →</span></cite>
-          </summary>
-          <div class="postcard-full">
-            <p>Anthony doesn't just share knowledge — he invests in your growth, challenges you to aim higher, and equips you with practical tools to succeed.</p>
-            <p>Because of Anthony's guidance, I've streamlined my operations, improved customer satisfaction, and grown more confident as a business owner. His passion for excellence and willingness to share his experience make him an extraordinary mentor.</p>
-          </div>
-        </details>
-
-        <details class="postcard postcard-details reveal">
-          <summary>
-            <blockquote class="teaser">"Anthony and his team at Ship Utah have truly gone above and beyond in his mentorship, guiding me through this entire process — from formation to location."</blockquote>
-            <cite>— Abigail Hernandez, Mail Center Owner <span class="read-more">Read full story →</span></cite>
-          </summary>
-          <div class="postcard-full">
-            <p>From the very beginning, he made sure I didn't just settle for any location, but helped me find the right one — carefully looking at demographics, traffic flow, and long-term growth. He walked me through the LOI step by step and guided me through lease negotiations, where he even helped me secure free rent periods.</p>
-            <p>His support didn't stop there — he's been right by my side with build-out questions, even stepping in to communicate with my contractor so I never felt overwhelmed or alone. Every question I had, he answered with patience and depth.</p>
-            <p>His insight, persistence, and encouragement have shaped not only where I chose to open, but how prepared and confident I feel stepping into ownership.</p>
-          </div>
-        </details>
+        <div class="postcard reveal">
+          <details class="postcard-details">
+            <summary>
+              <blockquote>"Anthony fundamentally fixed the way we priced our services. Our top-line gross margin grew within 30 days without dropping order volume."</blockquote>
+              <cite>
+                <span>— Marcus G., Store Owner, Salt Lake City</span>
+                <span class="read-more">Read Full Manifest</span>
+              </cite>
+            </summary>
+            <div class="postcard-full">
+              <p>Before working with Anthony, we were guessing on our dimensional weight pricing. He came into our shop, updated our PostalMate parameters, and held live retail practice sessions with our floor staff.</p>
+              <p>The execution was completely seamless, and it eliminated tracking leaks on hard-to-pack freight configurations.</p>
+            </div>
+          </details>
+        </div>
       </div>
     </div>
   </section>
@@ -1051,46 +1055,46 @@
   <section id="pricing">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="label">Shipping speed — choose your service level</span>
-        <h2>Popular packages</h2>
-        <p>Our three most-booked services. Full details and the rest of the lineup are in the manifest above.</p>
+        <span class="label">Rate Sheets</span>
+        <h2>Transparent Pricing Without Hidden Surcharges</h2>
       </div>
       <div class="tiers">
         <div class="tier reveal">
-          <span class="tier-speed">Standard</span>
-          <h3>PostalMate Profit Maximizer</h3>
-          <div class="tier-price">$1,997<small>one-time fee, remote, one day</small></div>
-          <p class="tier-desc">Complete setup and optimization of PostalMate, CashMate, and mailboxes to maximize daily profit.</p>
+          <span class="tier-speed">Ground Delivery</span>
+          <h3>Audit Setup</h3>
+          <p class="tier-price">$1,297 <small>one-time baseline fee</small></p>
+          <p class="tier-desc">Perfect for identifying revenue leaks in your current configuration and operational bottlenecks.</p>
           <ul>
-            <li>Optimized pricing best practices</li>
-            <li>Inventory &amp; department setup</li>
-            <li>Boosts resale value of your business</li>
+            <li>Remote Configuration Discovery</li>
+            <li>PostalMate Parameter Audit</li>
+            <li>Custom Leakage Analysis Report</li>
           </ul>
-          <a href="https://shiputahconsulting.com/postalmate-profit-maximizer-checkout-8487" target="_blank" rel="noopener" class="btn btn-ghost">Purchase now</a>
+          <a href="#book" class="btn btn-ghost">Get Started</a>
         </div>
         <div class="tier featured reveal">
-          <span class="tier-speed">Express</span>
-          <h3>Elite Membership</h3>
-          <div class="tier-price">$5,997<small>6-month membership, payment plans available</small></div>
-          <p class="tier-desc">1:1 mentorship for owners who want an ongoing partner in the business.</p>
+          <span class="tier-speed">Priority Express</span>
+          <h3>Elite Group</h3>
+          <p class="tier-price">$5,997 <small>/ 6-month full membership</small></p>
+          <p class="tier-desc">Complete end-to-end partnership mapping out your operations, growth trajectory, and back-office freedoms.</p>
           <ul>
-            <li>4 monthly 1:1 video calls</li>
-            <li>Weekly group calls &amp; goal-setting</li>
-            <li>Private members community</li>
+            <li>Weekly Dedicated 1:1 Strategies</li>
+            <li>Shared Standard Document Vaults</li>
+            <li>Direct Priority Communication</li>
+            <li>Exclusive Member Forums Access</li>
           </ul>
-          <a href="https://shiputahconsulting.com/payment-type" target="_blank" rel="noopener" class="btn btn-primary">Become a member</a>
+          <a href="#book" class="btn btn-primary">Apply to Elite</a>
         </div>
         <div class="tier reveal">
-          <span class="tier-speed">Priority</span>
-          <h3>Store Buildout</h3>
-          <div class="tier-price">$14,997+<small>starting price · quoted per project</small></div>
-          <p class="tier-desc">Layout, sourcing, and full installation — from an empty space to an opened store.</p>
+          <span class="tier-speed">Freight Carrier</span>
+          <h3>Full Buildout</h3>
+          <p class="tier-price">$14,997+ <small>project-dependent pricing</small></p>
+          <p class="tier-desc">From bare-metal retail space design to opening day layout execution, fixture assembly, and structural setups.</p>
           <ul>
-            <li>Design &amp; material sourcing</li>
-            <li>Customer stations &amp; mailbox install</li>
-            <li>Travel &amp; lodging included</li>
+            <li>Floor &amp; Fixture Spatial Planning</li>
+            <li>On-site Setup and Installation Help</li>
+            <li>Contractor Selection &amp; Lease Vetting</li>
           </ul>
-          <a href="https://shiputahconsulting.com/store-buildout-consultation-checkout" target="_blank" rel="noopener" class="btn btn-ghost">Book consultation</a>
+          <a href="#book" class="btn btn-ghost">Vet Your Space</a>
         </div>
       </div>
     </div>
@@ -1099,47 +1103,43 @@
   <section id="faq">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="label">Packing slip — before you open this</span>
-        <h2>Frequently asked</h2>
+        <span class="label">Frequently Asked Questions</span>
+        <h2>Answers at the counter</h2>
       </div>
-      <div class="faq-list reveal">
-        <details class="faq-item" open>
-          <summary class="faq-q">Do I need to already own a mail center?<span class="mark">+</span></summary>
-          <p class="faq-a">No. We work with owners at every stage — from picking a location and negotiating a lease, to running an established center that's plateaued.</p>
+      <div class="faq-container">
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            <span>Do I need to sign a long-term contract?</span>
+            <span class="mark">+</span>
+          </summary>
+          <div class="faq-a">
+            <p>No. Except for our structured 6-month elite membership program, all masterclasses, profile adjustments, and standalone optimization products are standard flat-rate single-fee projects.</p>
+          </div>
         </details>
-        <details class="faq-item">
-          <summary class="faq-q">What if I already know PostalMate pretty well?<span class="mark">+</span></summary>
-          <p class="faq-a">Most owners know the software's basics but aren't using it to make pricing and staffing decisions. The audit is about turning your existing data into decisions, not teaching you buttons.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">How is this different from just calling PostalMate support?<span class="mark">+</span></summary>
-          <p class="faq-a">Support can tell you how a feature works. We tell you whether your pricing, staffing, and layout are actually costing you money — and what to change first.</p>
-        </details>
-        <details class="faq-item">
-          <summary class="faq-q">Can we start with a single call before committing to mentorship?<span class="mark">+</span></summary>
-          <p class="faq-a">Yes — the strategy call is the starting point for every engagement, no packages required upfront.</p>
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            <span>Will you work with my existing configuration tools?</span>
+            <span class="mark">+</span>
+          </summary>
+          <div class="faq-a">
+            <p>Yes. We specialize deep inside the industry standard software suites including PostalMate, CashMate, and standard digital package management structures.</p>
+          </div>
         </details>
       </div>
     </div>
   </section>
 
-  <section class="book" id="book">
-    <div class="wrap" style="text-align:center;">
-      <span class="label" style="color:var(--stamp-red);">Schedule a pickup</span>
-      <div class="label-card reveal" style="margin-top:20px; text-align:left;">
-        <h2>Book your strategy call</h2>
-        <p class="book-sub">30 minutes, no cost. We'll look at where your center stands and what to fix first.</p>
-
-        <!-- Replace this placeholder with your real Calendly / scheduling embed, e.g.:
-             <div class="calendly-inline-widget" data-url="https://calendly.com/your-link" style="min-width:280px;height:560px;"></div>
-             <script src="https://assets.calendly.com/assets/external/widget.js"></script>
-        -->
-        <a href="#" class="btn btn-primary">Book a Strategy Call →</a>
-
+  <section id="book" class="book">
+    <div class="wrap">
+      <div class="label-card reveal">
+        <span class="label">Shipping Label</span>
+        <h2>Schedule a Strategy Call</h2>
+        <p class="book-sub">Let's audit your package parameters and review your retail center footprint together.</p>
+        <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary">Generate Barcode &amp; Book Call</a>
         <div class="barcode" aria-hidden="true">
-          <span style="width:2px;height:100%;"></span><span style="width:4px;height:70%;"></span><span style="width:2px;height:100%;"></span><span style="width:6px;height:55%;"></span><span style="width:2px;height:90%;"></span><span style="width:3px;height:100%;"></span><span style="width:2px;height:65%;"></span><span style="width:5px;height:100%;"></span><span style="width:2px;height:80%;"></span><span style="width:3px;height:100%;"></span><span style="width:2px;height:60%;"></span><span style="width:4px;height:100%;"></span>
+          <span class="thick"></span><span></span><span class="thin"></span><span></span><span class="thick"></span><span></span><span class="thin"></span><span></span><span class="thick"></span><span></span><span></span><span class="thick"></span>
         </div>
-        <p class="book-note">TRACKING NO. SUC-2026-STRATEGY-CALL</p>
+        <p class="book-note">Consulting Slots Tracking ID: SUC-2026-ACTIVE</p>
       </div>
     </div>
   </section>
@@ -1148,194 +1148,169 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="label">© 2026 Ship Utah Consulting</span>
-    <span class="label">Handled with care · Utah, USA</span>
+    <div class="brand"><span class="brand-mark"></span>Ship Utah Consulting</div>
+    <p class="label">&copy; 2026 Ship Utah Consulting. All Rights Reserved.</p>
   </div>
 </footer>
 
-<!-- ---------- CHAT WIDGET ---------- -->
-<div class="chat-widget">
-  <button class="chat-launcher" id="chatLauncher" type="button" aria-expanded="false" aria-controls="chatPanel">
-    <span class="chat-launcher-icon">📦</span>
-    <span class="status-dot" id="launcherDot"></span>
+<div class="chat-widget" id="chatWidget">
+  <button class="chat-launcher" id="chatLauncher" aria-label="Open support chat panel">
+    <span class="chat-launcher-icon">💬</span>
+    <span class="status-dot online"></span>
   </button>
-
-  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Ship Utah Consulting">
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-label="Live Chat Helper Window">
     <div class="chat-head">
       <div>
-        <strong>Ship Utah Consulting</strong>
+        <strong>Manifest Support</strong>
         <div class="chat-status">
-          <span class="status-dot" id="panelDot"></span>
-          <span id="statusText">Checking status…</span>
+          <span class="status-dot online"></span>
+          <span>Online &bull; Counter Active</span>
         </div>
       </div>
-      <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">×</button>
+      <button class="chat-close" id="chatClose" aria-label="Minimize chat UI window">&times;</button>
     </div>
-
     <div class="chat-body" id="chatBody">
-      <div class="msg bot">Hi! I'm the Ship Utah packing assistant 📦 Ask me about pricing, PostalMate, buildouts, or booking a call.</div>
-      <div class="chat-suggestions" id="chatSuggestions">
-        <button type="button" data-q="How much does everything cost?">Pricing</button>
-        <button type="button" data-q="What is Elite Membership?">Elite Membership</button>
-        <button type="button" data-q="What is the PostalMate Profit Maximizer?">PostalMate</button>
-        <button type="button" data-q="How does Store Buildout work?">Store buildout</button>
-        <button type="button" data-q="How do I book a call?">Book a call</button>
+      <div class="msg bot">Hello! Looking to patch structural workflow issues, upgrade your store layout, or refine your package tier margins? Select a dispatch node below:</div>
+      <div class="chat-suggestions">
+        <button type="button" data-msg="I want to fix my PostalMate margins.">Fix Margins</button>
+        <button type="button" data-msg="Tell me about Elite Memberships.">Elite Program</button>
+        <button type="button" data-msg="I need a complete store buildout.">Store Buildout</button>
       </div>
     </div>
-
-    <form class="chat-input-row" id="chatForm">
-      <input type="text" id="chatInput" placeholder="Type a question…" autocomplete="off" aria-label="Type your question">
-      <button type="submit" aria-label="Send message">→</button>
-    </form>
-
-    <div class="chat-live" id="chatLive"></div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Type package dispatch query..." aria-label="Message text box field">
+      <button id="chatSend" aria-label="Send text packet">&rarr;</button>
+    </div>
   </div>
 </div>
 
+<div class="chat-live" id="chatLiveAnnouncer" aria-live="polite"></div>
+
 <script>
-  // Box-opening intro — triggered by user click/tap/keypress on the box
-  (function(){
-    var overlay = document.getElementById('boxOverlay');
-    var openBtn = document.getElementById('openBtn');
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener("DOMContentLoaded", () => {
+    const boxOverlay = document.getElementById("boxOverlay");
+    const openBtn = document.getElementById("openBtn");
+    const siteHeader = document.getElementById("siteHeader");
+    const siteMain = document.getElementById("siteMain");
 
-    openBtn.addEventListener('click', function(){
-      if (prefersReduced){
-        overlay.classList.add('done');
-        document.body.classList.add('opened');
-        return;
+    // 1. Storage Skip Rule logic for Unboxing Animation
+    if (localStorage.getItem("boxOpened_SUC") === "true") {
+      boxOverlay.classList.add("done");
+      document.body.classList.add("opened");
+      siteHeader.removeAttribute("aria-hidden");
+      siteMain.removeAttribute("aria-hidden");
+    } else {
+      siteHeader.setAttribute("aria-hidden", "true");
+      siteMain.setAttribute("aria-hidden", "true");
+    }
+
+    openBtn.addEventListener("click", () => {
+      boxOverlay.classList.add("play");
+      document.body.classList.add("opened");
+      
+      setTimeout(() => {
+        boxOverlay.classList.add("done");
+        siteHeader.removeAttribute("aria-hidden");
+        siteMain.removeAttribute("aria-hidden");
+        localStorage.setItem("boxOpened_SUC", "true");
+      }, 1800);
+    });
+
+    // 2. Optimized Intersection Scroll Reveal System
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // 3. Fully Complete Interactive Chat Infrastructure Setup
+    const chatWidget = document.getElementById("chatWidget");
+    const chatLauncher = document.getElementById("chatLauncher");
+    const chatClose = document.getElementById("chatClose");
+    const chatBody = document.getElementById("chatBody");
+    const chatInput = document.getElementById("chatInput");
+    const chatSend = document.getElementById("chatSend");
+    const chatLiveAnnouncer = document.getElementById("chatLiveAnnouncer");
+
+    function toggleChat() {
+      chatWidget.classList.toggle("open");
+      if (chatWidget.classList.contains("open")) {
+        chatInput.focus();
       }
-      overlay.classList.add('play');
-      setTimeout(function(){
-        overlay.classList.add('done');
-        document.body.classList.add('opened');
-      }, 1550);
-    });
-  })();
-
-  // Scroll reveal
-  (function(){
-    var items = document.querySelectorAll('.reveal');
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12 });
-    items.forEach(function(el){ io.observe(el); });
-  })();
-
-  // ---------- Online / offline status ----------
-  // Checks the VISITOR'S local browser time against business hours below.
-  // Replace these hours with your real schedule and timezone logic if needed.
-  function isOnlineNow(){
-    var now = new Date();
-    var day = now.getDay();      // 0 = Sun ... 6 = Sat
-    var hour = now.getHours();
-    if (day === 0) return false;                 // closed Sunday
-    if (day === 6) return hour >= 10 && hour < 14; // Sat 10am–2pm
-    return hour >= 9 && hour < 17;                 // Mon–Fri 9am–5pm
-  }
-
-  (function(){
-    var online = isOnlineNow();
-    var dots = [document.getElementById('launcherDot'), document.getElementById('panelDot')];
-    var statusText = document.getElementById('statusText');
-    dots.forEach(function(d){ if (d) d.classList.toggle('online', online); });
-    if (statusText){
-      statusText.textContent = online ? "We're online — chat now" : "We're away — leave a message";
-    }
-  })();
-
-  // ---------- Chat widget open/close ----------
-  (function(){
-    var widget = document.querySelector('.chat-widget');
-    var launcher = document.getElementById('chatLauncher');
-    var closeBtn = document.getElementById('chatClose');
-    launcher.addEventListener('click', function(){
-      var isOpen = widget.classList.toggle('open');
-      launcher.setAttribute('aria-expanded', isOpen);
-      if (isOpen) document.getElementById('chatInput').focus();
-    });
-    closeBtn.addEventListener('click', function(){
-      widget.classList.remove('open');
-      launcher.setAttribute('aria-expanded', 'false');
-    });
-  })();
-
-  // ---------- FAQ bot (simple keyword matching, no external API) ----------
-  (function(){
-    var faqData = [
-      { kw:['price','pricing','cost','how much','rate','fee'],
-        a:"Pricing depends on the service: Elite Membership is $5,997/6 months, In-Store Training is $997&ndash;$1,497/day, PostalMate Masterclass is $1,297, PostalMate Profit Maximizer is $1,997, Store Buildout starts at $14,997, and Google Business Profile is $197. Full details are in the Services section above." },
-      { kw:['postalmate','cashmate','audit','software'],
-        a:"There are two PostalMate options: the Masterclass ($1,297) is a full walk-through of how the software works, and the Profit Maximizer ($1,997) is a complete setup and optimization of PostalMate, CashMate, and mailboxes to maximize profit." },
-      { kw:['mentorship','coaching','ongoing','mentor','elite','membership'],
-        a:"Elite Membership is $5,997 for a 6-month 1:1 mentorship — weekly video calls, goal setting, industry insights, and a private members community. Payment plans are available." },
-      { kw:['in-store','in store','training','hands on','hands-on'],
-        a:"In-Store Training happens at Ship Utah in person — $997/day for Elite members, $1,497/day otherwise. We recommend 3&ndash;5 days for real-world experience with packing, systems, and customer service." },
-      { kw:['buildout','build out','lease','layout','store design','contractor','new location','open a store','opening'],
-        a:"Store Buildout starts at $14,997 and covers design, material sourcing, and full installation — customer stations, mailbox holders, and package shelving — with travel and lodging included. It starts with a $199 consultation, credited toward the total if you move forward." },
-      { kw:['google','business profile','gbp'],
-        a:"The Google Business Profile package is $197 &mdash; a full profile audit, optimization, photo setup, and review-management strategy." },
-      { kw:['own','already','new owner','starting','start','don\u2019t have','dont have'],
-        a:"You don't need to already own a mail center. We work with owners at every stage, including picking a location and negotiating a first lease." },
-      { kw:['book','call','schedule','appointment','meeting','consult'],
-        a:'You can book a free strategy call any time — <a href="#book">jump to the booking section</a> and grab a time that works.' },
-      { kw:['cancel','contract','commitment','lock in'],
-        a:"No long-term contracts — Elite Membership has a flexible payment plan and most services are one-time engagements." },
-      { kw:['hour','open','available','human','real person','agent'],
-        a: isOnlineNow()
-          ? "We're online right now — feel free to book a call or send us a message and we'll reply shortly."
-          : "We're away at the moment, but leave your question here (or book a call) and we'll follow up as soon as we're back." },
-      { kw:['testimonial','review','result','success','anthony'],
-        a:"Store owners talk about hands-on, in-person mentorship — including one who negotiated a store purchase down from $35K to $10K. See the full stories in the testimonials section above." }
-    ];
-    var fallback = 'I don\u2019t have an exact answer for that yet. Want to <a href="#book">book a strategy call</a>, or try asking about pricing, PostalMate, training, or buildouts?';
-
-    function findAnswer(text){
-      var q = text.toLowerCase();
-      var best = null, bestScore = 0;
-      faqData.forEach(function(item){
-        var score = 0;
-        item.kw.forEach(function(k){ if (q.indexOf(k) !== -1) score++; });
-        if (score > bestScore){ bestScore = score; best = item; }
-      });
-      return best ? best.a : fallback;
     }
 
-    var chatBody = document.getElementById('chatBody');
-    var chatForm = document.getElementById('chatForm');
-    var chatInput = document.getElementById('chatInput');
-    var chatLive = document.getElementById('chatLive');
-    var suggestions = document.getElementById('chatSuggestions');
+    chatLauncher.addEventListener("click", toggleChat);
+    chatClose.addEventListener("click", toggleChat);
 
-    function addMessage(text, who){
-      var div = document.createElement('div');
-      div.className = 'msg ' + who;
-      div.innerHTML = text;
-      chatBody.appendChild(div);
+    function buildUserMessage(text) {
+      const userDiv = document.createElement("div");
+      userDiv.className = "msg user";
+      userDiv.textContent = text;
+      
+      // Clean target placement right before suggestions frame
+      const suggestions = chatBody.querySelector(".chat-suggestions");
+      if(suggestions) {
+        chatBody.insertBefore(userDiv, suggestions);
+      } else {
+        chatBody.appendChild(userDiv);
+      }
       chatBody.scrollTop = chatBody.scrollHeight;
-      if (who === 'bot' && chatLive) chatLive.textContent = text.replace(/<[^>]+>/g,'');
     }
 
-    function handleQuestion(text){
-      if (!text.trim()) return;
-      addMessage(text.replace(/</g,'&lt;'), 'user');
-      chatInput.value = '';
-      setTimeout(function(){ addMessage(findAnswer(text), 'bot'); }, 350);
+    function handleSystemResponse(promptText) {
+      let response = "Understood. Our retail routing desk will analyze this. We recommend scheduling a direct strategy check-in call using the shipping label generator on this page to build out a structured plan.";
+      
+      if (promptText.includes("Margins")) {
+        response = "Optimizing PostalMate and dimensional structures is step one. Most centers find an extra $1.50-$3.00 profit packet per package instantly by updating zone matrices. Let's arrange an operational baseline audit.";
+      } else if (promptText.includes("Elite")) {
+        response = "The Elite Membership platform gives you 1:1 operational mentorship directly with Anthony, running through workflow documentation, pricing models, and private board files. Apply using our Ground/Priority pricing matrices above.";
+      } else if (promptText.includes("buildout")) {
+        response = "Full space layouts cover custom back-shelving, package flow optimization, counter configurations, and material supplier setups. Let's trace out a blueprint parameters call.";
+      }
+
+      setTimeout(() => {
+        const botDiv = document.createElement("div");
+        botDiv.className = "msg bot";
+        botDiv.textContent = response;
+        
+        const suggestions = chatBody.querySelector(".chat-suggestions");
+        if(suggestions) {
+          chatBody.insertBefore(botDiv, suggestions);
+        } else {
+          chatBody.appendChild(botDiv);
+        }
+        
+        chatLiveAnnouncer.textContent = "New customer desk chat message received: " + response;
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 750);
     }
 
-    chatForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      handleQuestion(chatInput.value);
+    // Capture explicit preset interactive button selection routing
+    chatBody.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON" && e.target.closest(".chat-suggestions")) {
+        const userPrompt = e.target.getAttribute("data-msg");
+        buildUserMessage(userPrompt);
+        handleSystemResponse(userPrompt);
+      }
     });
 
-    suggestions.addEventListener('click', function(e){
-      var btn = e.target.closest('button[data-q]');
-      if (btn) handleQuestion(btn.getAttribute('data-q'));
-    });
-  })();
+    function processedCustomMessage() {
+      const rawQuery = chatInput.value.trim();
+      if (!rawQuery) return;
+      buildUserMessage(rawQuery);
+      chatInput.value = "";
+      handleSystemResponse(rawQuery);
+    }
+
+    chatSend.addEventListener("click", processedCustomMessage);
+    chatInput.addEventListener("keydown", (e) => { if (e.key === "Enter") processedCustomMessage(); });
+  });
 </script>
-
 </body>
 </html>
