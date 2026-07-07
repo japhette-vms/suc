@@ -555,6 +555,7 @@
     background:var(--kraft);
     transform:rotate(-1.2deg);
     transition:transform .2s ease, box-shadow .2s ease;
+    cursor:pointer;
   }
   .work-item:nth-child(even){ transform:rotate(1.2deg); }
   .work-item:nth-child(3n){ transform:rotate(-0.6deg); }
@@ -671,6 +672,24 @@
   }
   .postcard-details summary::-webkit-details-marker{ display:none; }
   .postcard-details .teaser{ margin-bottom:14px; }
+  .postcard-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .postcard-photo{
+    width:52px; height:52px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--brown-deep);
+    flex-shrink:0;
+  }
+  .stars{
+    color:var(--stamp-red);
+    font-size:1rem;
+    letter-spacing:2px;
+  }
   .postcard-details cite{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .read-more{
     font-family:'Space Mono', monospace;
@@ -1102,6 +1121,104 @@
     .chat-bubble-tip{ display:none; }
   }
 
+  /* ---------- SCROLL PROGRESS ---------- */
+  .scroll-progress{
+    position:fixed;
+    top:0; left:0;
+    height:3px;
+    width:0%;
+    background:var(--stamp-red);
+    z-index:250;
+    transition:width .08s linear;
+  }
+
+  /* ---------- SCROLLSPY NAV ---------- */
+  nav.links a.active:not(.nav-cta){
+    color:var(--stamp-red);
+    border-color:var(--stamp-red);
+  }
+
+  /* ---------- BACK TO TOP ---------- */
+  .back-to-top{
+    position:fixed;
+    left:24px;
+    bottom:24px;
+    z-index:130;
+    width:48px; height:48px;
+    border-radius:50%;
+    background:var(--cream-lt);
+    border:2px solid var(--brown-deep);
+    color:var(--brown-deep);
+    font-size:1.3rem;
+    cursor:pointer;
+    box-shadow:3px 3px 0 rgba(0,0,0,0.2);
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease, background .15s ease, color .15s ease;
+  }
+  .back-to-top.show{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .back-to-top:hover{ background:var(--brown-deep); color:var(--cream-lt); }
+  @media (max-width:760px){
+    .back-to-top{ bottom:88px; left:16px; width:44px; height:44px; }
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed;
+    inset:0;
+    z-index:300;
+    background:rgba(20,14,9,0.94);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox-img{
+    max-width:88vw;
+    max-height:82vh;
+    border-radius:4px;
+    border:3px solid var(--cream-lt);
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:20px; right:24px;
+    background:none;
+    border:none;
+    color:var(--cream-lt);
+    font-size:2.4rem;
+    line-height:1;
+    cursor:pointer;
+  }
+  .lightbox-nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(247,241,226,0.15);
+    border:2px solid var(--cream-lt);
+    color:var(--cream-lt);
+    width:48px; height:48px;
+    border-radius:50%;
+    font-size:1.8rem;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s ease;
+  }
+  .lightbox-nav:hover{ background:rgba(247,241,226,0.3); }
+  .lightbox-prev{ left:20px; }
+  .lightbox-next{ right:20px; }
+  @media (max-width:600px){
+    .lightbox-nav{ width:38px; height:38px; font-size:1.4rem; }
+    .lightbox-prev{ left:8px; }
+    .lightbox-next{ right:8px; }
+  }
+
   /* ---------- SCROLL REVEAL ---------- */
   .reveal{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
@@ -1368,6 +1485,10 @@
       <div class="postcard-list">
         <details class="postcard postcard-details reveal">
           <summary>
+            <div class="postcard-head">
+              <img src="tran.jpg" alt="Bsarida Tran" class="postcard-photo" loading="lazy">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
             <blockquote class="teaser">"Working with Anthony has truly been one of the best decisions I've made as a new business owner... he flew over 750 miles to spend several days in my store."</blockquote>
             <cite>— Bsarida Tran, Mail Center Owner <span class="read-more">Read full story →</span></cite>
           </summary>
@@ -1380,6 +1501,10 @@
 
         <details class="postcard postcard-details reveal">
           <summary>
+            <div class="postcard-head">
+              <img src="romelyn.jpg" alt="Romelyn Losner" class="postcard-photo" loading="lazy">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
             <blockquote class="teaser">"I'm beyond grateful for the incredible mentorship Anthony has provided me. His unmatched expertise has completely transformed the way I run my business."</blockquote>
             <cite>— Romelyn Losner, Mail Center Owner <span class="read-more">Read full story →</span></cite>
           </summary>
@@ -1391,6 +1516,10 @@
 
         <details class="postcard postcard-details reveal">
           <summary>
+            <div class="postcard-head">
+              <img src="abigail.jpg" alt="Abigail Hernandez" class="postcard-photo" loading="lazy">
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
             <blockquote class="teaser">"Anthony and his team at Ship Utah have truly gone above and beyond in his mentorship, guiding me through this entire process — from formation to location."</blockquote>
             <cite>— Abigail Hernandez, Mail Center Owner <span class="read-more">Read full story →</span></cite>
           </summary>
@@ -1516,6 +1645,20 @@
     <span class="label">Handled with care · Utah, USA</span>
   </div>
 </footer>
+
+<!-- ---------- SCROLL PROGRESS BAR ---------- -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ---------- BACK TO TOP ---------- -->
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+
+<!-- ---------- LIGHTBOX ---------- -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Enlarged photo" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">‹</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">›</button>
+</div>
 
 <!-- ---------- MOBILE STICKY CTA ---------- -->
 <div class="mobile-sticky-cta" id="mobileStickyCta">
@@ -1675,6 +1818,98 @@
         overlay.classList.add('done');
         document.body.classList.add('opened');
       }, 1550);
+    });
+  })();
+
+  // Scroll progress bar
+  (function(){
+    var bar = document.getElementById('scrollProgress');
+    if (!bar) return;
+    function update(){
+      var h = document.documentElement;
+      var scrolled = h.scrollTop;
+      var max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (scrolled / max) * 100 : 0) + '%';
+    }
+    document.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
+
+  // Scrollspy — highlight the current section in the nav
+  (function(){
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('nav.links a[href^="#"]'));
+    if (!navLinks.length) return;
+    var map = {};
+    navLinks.forEach(function(a){
+      var id = a.getAttribute('href').slice(1);
+      var section = document.getElementById(id);
+      if (section) map[id] = a;
+    });
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var link = map[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navLinks.forEach(function(a){ a.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function(id){ obs.observe(document.getElementById(id)); });
+  })();
+
+  // Back to top button
+  (function(){
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+    document.addEventListener('scroll', function(){
+      btn.classList.toggle('show', window.scrollY > 700);
+    }, { passive: true });
+    btn.addEventListener('click', function(){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
+  // Lightbox for the work gallery
+  (function(){
+    var images = Array.prototype.slice.call(document.querySelectorAll('.work-item img'));
+    if (!images.length) return;
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightboxImg');
+    var closeBtn = document.getElementById('lightboxClose');
+    var prevBtn = document.getElementById('lightboxPrev');
+    var nextBtn = document.getElementById('lightboxNext');
+    var current = 0;
+
+    function open(index){
+      current = index;
+      lightboxImg.src = images[current].src;
+      lightboxImg.alt = images[current].alt;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+    }
+    function close(){
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+    }
+    function step(dir){
+      current = (current + dir + images.length) % images.length;
+      lightboxImg.src = images[current].src;
+      lightboxImg.alt = images[current].alt;
+    }
+
+    images.forEach(function(img, i){
+      img.parentElement.addEventListener('click', function(){ open(i); });
+    });
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', function(){ step(-1); });
+    nextBtn.addEventListener('click', function(){ step(1); });
+    lightbox.addEventListener('click', function(e){ if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', function(e){
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
     });
   })();
 
