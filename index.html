@@ -433,6 +433,105 @@
     .track-dot{ top:2px; left:0; }
   }
 
+  /* ---------- CALCULATOR ---------- */
+  .calc-card{
+    background:var(--brown-deep);
+    color:var(--cream-lt);
+    border-radius:8px;
+    padding:52px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:52px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .calc-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0 14px, transparent 14px 28px);
+    pointer-events:none;
+  }
+  .calc-copy h2{ font-size:clamp(1.6rem,3vw,2.1rem); margin:10px 0 14px; }
+  .calc-copy p{ color:rgba(247,241,226,0.78); margin-bottom:18px; }
+  .calc-tool{
+    background:var(--cream-lt);
+    color:var(--brown-deep);
+    border-radius:6px;
+    padding:28px;
+    position:relative;
+  }
+  .calc-tool label{
+    display:block;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--brown-mid);
+    margin-bottom:10px;
+  }
+  .calc-input-wrap{
+    display:flex;
+    align-items:center;
+    border:2px solid var(--brown-deep);
+    border-radius:4px;
+    padding:10px 14px;
+    margin-bottom:14px;
+    background:var(--cream);
+  }
+  .calc-input-wrap span{ font-family:'Fraunces', serif; font-weight:700; font-size:1.2rem; margin-right:6px; }
+  .calc-input-wrap input{
+    border:none;
+    background:none;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.2rem;
+    color:var(--brown-deep);
+    width:100%;
+  }
+  .calc-input-wrap input:focus{ outline:none; }
+  #calcSlider{
+    width:100%;
+    accent-color:var(--stamp-red);
+    margin-bottom:22px;
+  }
+  .calc-result{
+    background:var(--cream);
+    border:2px dashed var(--kraft-lt);
+    border-radius:6px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:14px;
+  }
+  .calc-result-label{
+    display:block;
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--brown-mid);
+    margin-bottom:6px;
+  }
+  .calc-result-value{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:2rem;
+    color:var(--stamp-red);
+  }
+  .calc-result-sub{
+    display:block;
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    color:var(--brown-mid);
+    margin-top:4px;
+  }
+  .calc-footnote{ font-size:0.74rem; color:var(--brown-mid); }
+  @media (max-width:820px){
+    .calc-card{ grid-template-columns:1fr; padding:32px 24px; }
+  }
+
   /* ---------- ABOUT ---------- */
   .about{ background:var(--brown-deep); color:var(--cream-lt); }
   .about .section-head p{ color:rgba(247,241,226,0.75); }
@@ -865,6 +964,22 @@
     transition:background .15s ease, color .15s ease, transform .15s ease;
   }
   .chat-suggestions button:hover{ background:var(--stamp-red); border-color:var(--stamp-red); color:var(--cream-lt); transform:translateY(-1px); }
+  .chat-suggestions button.segment-btn{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:var(--cream);
+    border:2px solid var(--brown-deep);
+    color:var(--brown-deep);
+    border-radius:6px;
+    padding:12px 14px;
+    font-family:'Work Sans', sans-serif;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:0.9rem;
+    font-weight:500;
+  }
+  .chat-suggestions button.segment-btn:hover{ background:var(--brown-deep); color:var(--cream-lt); }
 
   .chat-input-row{
     display:flex;
@@ -1036,6 +1151,18 @@
             <a href="https://shiputahconsulting.com/google-business-profile-checkout" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Purchase now</a>
           </div>
         </div>
+        <div class="manifest-row reveal">
+          <div class="qty">07</div>
+          <div>
+            <h3>PostageSync</h3>
+            <p>Software that automatically cross-checks your carrier invoices (UPS, FedEx, DHL, USPS) against your PostalMate/ShipRite quotes to catch overcharges in under 5 minutes.</p>
+            <span class="manifest-tag">Monthly</span>
+          </div>
+          <div>
+            <p class="price-line">$19&ndash;$49 <small>/mo &middot; Basic or Pro plan</small></p>
+            <a href="#book" class="btn btn-ghost btn-sm">Get started</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -1071,6 +1198,35 @@
           <span class="track-label">Delivered</span>
           <h3>Ongoing support</h3>
           <p>Check-ins to keep the changes working as your center grows.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calculator">
+    <div class="wrap">
+      <div class="calc-card reveal">
+        <div class="calc-copy">
+          <span class="label" style="color:var(--tape);">PostageSync estimator</span>
+          <h2>What's hiding in your carrier invoices?</h2>
+          <p>Stores routinely find billing errors buried in UPS, FedEx, DHL, and USPS invoices &mdash; duplicate charges, wrong dimensional weights, missed refunds. See a rough estimate of what that could mean for you.</p>
+          <a href="#book" class="btn btn-primary" style="margin-top:8px;">Get PostageSync</a>
+        </div>
+        <div class="calc-tool">
+          <label for="calcSpend">Your average monthly shipping spend</label>
+          <div class="calc-input-wrap">
+            <span>$</span>
+            <input type="number" id="calcSpend" placeholder="e.g. 4000" min="0" inputmode="numeric">
+          </div>
+          <input type="range" id="calcSlider" min="500" max="30000" step="100" value="4000">
+          <div class="calc-result">
+            <div>
+              <span class="calc-result-label">Estimated overcharges found*</span>
+              <span class="calc-result-value" id="calcLow">$0&ndash;$0</span>
+              <span class="calc-result-sub">per month</span>
+            </div>
+          </div>
+          <p class="calc-footnote">*Estimate based on typical 5&ndash;15% invoice discrepancy rates industry-wide. Your actual results depend on your carriers and shipping volume.</p>
         </div>
       </div>
     </div>
@@ -1268,13 +1424,11 @@
     </div>
 
     <div class="chat-body" id="chatBody">
-      <div class="msg bot">Hi! I'm the Ship Utah packing assistant 📦 Ask me about pricing, PostalMate, buildouts, or booking a call.</div>
+      <div class="msg bot">Hi! I'm the Ship Utah assistant 📦 Quick question so I can point you the right way —</div>
       <div class="chat-suggestions" id="chatSuggestions">
-        <button type="button" data-q="How much does everything cost?">Pricing</button>
-        <button type="button" data-q="What is Elite Membership?">Elite Membership</button>
-        <button type="button" data-q="What is the PostalMate Profit Maximizer?">PostalMate</button>
-        <button type="button" data-q="How does Store Buildout work?">Store buildout</button>
-        <button type="button" data-q="How do I book a call?">Book a call</button>
+        <button type="button" class="segment-btn" data-segment="A">🆕 I don't have a store yet</button>
+        <button type="button" class="segment-btn" data-segment="B">🏪 I already own a store</button>
+        <button type="button" data-q="How much does everything cost?">Just show me pricing</button>
       </div>
     </div>
 
@@ -1438,6 +1592,34 @@
     }
   })();
 
+  // ---------- Carrier overcharge calculator ----------
+  (function(){
+    var input = document.getElementById('calcSpend');
+    var slider = document.getElementById('calcSlider');
+    var lowOut = document.getElementById('calcLow');
+    if (!input || !slider) return;
+
+    function format(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+
+    function update(spend){
+      spend = Math.max(0, Number(spend) || 0);
+      var low = spend * 0.05;
+      var high = spend * 0.15;
+      lowOut.textContent = format(low) + '\u2013' + format(high);
+    }
+
+    input.addEventListener('input', function(){
+      slider.value = input.value || 0;
+      update(input.value);
+    });
+    slider.addEventListener('input', function(){
+      input.value = slider.value;
+      update(slider.value);
+    });
+
+    update(slider.value);
+  })();
+
   // ---------- Chat widget open/close, entrance, and attention bubble ----------
   (function(){
     var widget = document.getElementById('chatWidget');
@@ -1482,23 +1664,26 @@
     }, 200);
   })();
 
-  // ---------- FAQ bot (simple keyword matching, no external API) ----------
+  // ---------- FAQ bot (rule-based keyword matching, no external API) ----------
   (function(){
+    // ---- Full product map ----
     var faqData = [
       { kw:['price','pricing','cost','how much','rate','fee'],
-        a:"Pricing depends on the service: Elite Membership is $5,997/6 months, In-Store Training is $997&ndash;$1,497/day, PostalMate Masterclass is $1,297, PostalMate Profit Maximizer is $1,997, Store Buildout starts at $14,997, and Google Business Profile is $197. Full details are in the Services section above." },
-      { kw:['postalmate','cashmate','audit','software'],
-        a:"There are two PostalMate options: the Masterclass ($1,297) is a full walk-through of how the software works, and the Profit Maximizer ($1,997) is a complete setup and optimization of PostalMate, CashMate, and mailboxes to maximize profit." },
+        a:"Here's the lineup: PostageSync is $19&ndash;$49/mo, PostalMate Masterclass is $1,297, PostalMate Profit Maximizer is $1,997, In-Store Training is $997&ndash;$1,497/day, Elite Membership is $5,997/6 months, and Store Buildout starts at $14,997. Full details are in the Services section above &mdash; want me to point you to the right one for your stage?" },
+      { kw:['postalmate','cashmate','audit','software setup'],
+        a:"There are two PostalMate options: the Masterclass ($1,297) is a full walk-through of how the software works, and the Profit Maximizer ($1,997) is a done-for-you remote setup and optimization of PostalMate, CashMate, and mailboxes to lock in peak margins." },
       { kw:['mentorship','coaching','ongoing','mentor','elite','membership'],
-        a:"Elite Membership is $5,997 for a 6-month 1:1 mentorship — weekly video calls, goal setting, industry insights, and a private members community. Payment plans are available." },
+        a:"Elite Membership is $5,997 for a 6-month 1:1 mentorship — 4 scheduled video calls a month, weekly group webinars, goal setting, and a private community. Payment plans are available." },
       { kw:['in-store','in store','training','hands on','hands-on'],
-        a:"In-Store Training happens at Ship Utah in person — $997/day for Elite members, $1,497/day otherwise. We recommend 3&ndash;5 days for real-world experience with packing, systems, and customer service." },
+        a:"In-Store Training happens at Ship Utah in person — $997/day for Elite members, $1,497/day otherwise. Covers packing demos, retail best practices, and mailbox sales coaching." },
       { kw:['buildout','build out','lease','layout','store design','contractor','new location','open a store','opening'],
-        a:"Store Buildout starts at $14,997 and covers design, material sourcing, and full installation — customer stations, mailbox holders, and package shelving — with travel and lodging included. It starts with a $199 consultation, credited toward the total if you move forward." },
+        a:"Store Buildout starts at $14,997 (plus materials) and covers full physical design and installation — customer stations, mailbox holders, package shelving — with travel, lodging, and the setup team's transportation included. It starts with a $199 90-minute consultation, which is fully credited toward the buildout if you move forward." },
+      { kw:['postagesync','carrier invoice','invoice audit','overcharge','shipping invoice','carrier bill','ups fedex dhl'],
+        a:"PostageSync automatically cross-checks your UPS, FedEx, DHL, and USPS invoices against your PostalMate/ShipRite quotes and flags overcharges in under 5 minutes. Basic is $19/mo, Pro is $49/mo and adds 1-click dispute letters, spend dashboards, and carrier scorecards. Most stores find real money hiding in those invoices." },
       { kw:['google','business profile','gbp'],
         a:"The Google Business Profile package is $197 &mdash; a full profile audit, optimization, photo setup, and review-management strategy." },
       { kw:['own','already','new owner','starting','start','don\u2019t have','dont have'],
-        a:"You don't need to already own a mail center. We work with owners at every stage, including picking a location and negotiating a first lease." },
+        a:"You don't need to already own a mail center yet. We work with owners at every stage — from picking a location and negotiating a first lease, to optimizing a store that's already open." },
       { kw:['book','call','schedule','appointment','meeting','consult'],
         a:'You can book a free strategy call any time — <a href="#book">jump to the booking section</a> and grab a time that works.' },
       { kw:['cancel','contract','commitment','lock in'],
@@ -1508,20 +1693,40 @@
           ? "We're online right now — feel free to book a call or send us a message and we'll reply shortly."
           : "We're away at the moment, but leave your question here (or book a call) and we'll follow up as soon as we're back." },
       { kw:['testimonial','review','result','success','anthony'],
-        a:"Store owners talk about hands-on, in-person mentorship — including one who negotiated a store purchase down from $35K to $10K. See the full stories in the testimonials section above." }
+        a:"Store owners talk about hands-on, in-person mentorship — including one who negotiated a store purchase down from $35K to $10K. See the full stories in the testimonials section above." },
+
+      // ---- Objection handling pivots (multi-word phrases score higher, so these outrank generic matches) ----
+      { kw:['too expensive','cant afford','can\u2019t afford','too pricey','out of budget','buildout too much','14997 too much','14,997 too much','not ready to spend'],
+        a:"Totally fair — $14,997 is a real investment to put down before you've opened. Most people in that spot start with the <strong>$199, 90-minute consultation</strong> instead: we map out your space and plan design together. If you move forward with the full Buildout later, that $199 is fully credited back — so the first step is essentially risk-free." },
+      { kw:['no time for masterclass','dont have a whole day','don\u2019t have a whole day','too long masterclass','no time to sit through','too busy for masterclass','whole day for masterclass'],
+        a:"If you don't have time to sit through a full day of training, that's actually the case <em>for</em> the <strong>PostalMate Profit Maximizer ($1,997)</strong> instead of the Masterclass. It's a remote, hands-off setup — we optimize your settings, pricing sheets, and inventory backend for you, so you get the result without spending the day in the software yourself." },
+      { kw:['is postagesync safe','postagesync safe','data safe','data privacy','is my data','secure invoice'],
+        a:"Good question — your PostageSync data and carrier rates are entirely isolated to your account and never shared. Instead of a manager spending hours cross-referencing tracking numbers in spreadsheets, PostageSync maps your columns once and flags every overcharge or duplicate invoice automatically, in under five minutes." }
     ];
-    var fallback = 'I don\u2019t have an exact answer for that yet. Want to <a href="#book">book a strategy call</a>, or try asking about pricing, PostalMate, training, or buildouts?';
+    var fallback = 'I don\u2019t have an exact answer for that yet. Want to <a href="#book">book a strategy call</a>, or try asking about pricing, PostalMate, PostageSync, or buildouts?';
 
     function findAnswer(text){
       var q = text.toLowerCase();
       var best = null, bestScore = 0;
       faqData.forEach(function(item){
         var score = 0;
-        item.kw.forEach(function(k){ if (q.indexOf(k) !== -1) score++; });
+        item.kw.forEach(function(k){
+          if (q.indexOf(k) !== -1) score += 1 + (k.split(' ').length - 1) * 0.75; // reward specific phrases
+        });
         if (score > bestScore){ bestScore = score; best = item; }
       });
       return best ? best.a : fallback;
     }
+
+    // ---- High-intent detection → lead capture flow ----
+    var highIntentKw = ['sign me up','ready to buy','i want to book','lock in','get started','let\u2019s do this','lets do this','ready to start','sign up','purchase'];
+    function isHighIntent(text){
+      var q = text.toLowerCase();
+      return highIntentKw.some(function(k){ return q.indexOf(k) !== -1; });
+    }
+    var emailRe = /[^\s@]+@[^\s@]+\.[^\s@]+/;
+    var phoneRe = /(\+?\d[\d\s().-]{6,}\d)/;
+    var lead = { state:'idle', email:null, phone:null };
 
     var chatBody = document.getElementById('chatBody');
     var chatForm = document.getElementById('chatForm');
@@ -1551,15 +1756,62 @@
       if (t) t.remove();
     }
 
+    function setSuggestions(list){
+      suggestions.innerHTML = '';
+      list.forEach(function(item){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('data-q', item.q);
+        b.textContent = item.label;
+        suggestions.appendChild(b);
+      });
+    }
+
+    // NOTE: This is a static site with no backend, so leads can't be saved to a database automatically.
+    // The "Send" button below opens a pre-filled email via mailto: — replace the address with your real inbox.
+    var LEAD_INBOX = 'info@shiputahconsulting.com';
+
+    function sendReply(botText, delay){
+      showTyping();
+      setTimeout(function(){
+        hideTyping();
+        addMessage(botText, 'bot');
+      }, delay || 700);
+    }
+
     function handleQuestion(text){
       if (!text.trim()) return;
       addMessage(text.replace(/</g,'&lt;'), 'user');
       chatInput.value = '';
-      showTyping();
-      setTimeout(function(){
-        hideTyping();
-        addMessage(findAnswer(text), 'bot');
-      }, 700);
+
+      // --- Lead capture state machine ---
+      if (lead.state === 'awaiting_email'){
+        var em = text.match(emailRe);
+        if (em){
+          lead.email = em[0];
+          lead.state = 'awaiting_phone';
+          sendReply("Got it — and a phone number, in case a quick call is easier?");
+          return;
+        }
+      }
+      if (lead.state === 'awaiting_phone'){
+        var ph = text.match(phoneRe);
+        lead.phone = ph ? ph[0] : text.trim();
+        lead.state = 'idle';
+        var subject = encodeURIComponent('New strategy call request from the website');
+        var body = encodeURIComponent('Email: ' + lead.email + '\nPhone: ' + lead.phone + '\n\nSent from the Ship Utah chat assistant.');
+        var mailtoLink = 'mailto:' + LEAD_INBOX + '?subject=' + subject + '&body=' + body;
+        sendReply('Perfect — <a href="' + mailtoLink + '">tap here to send that straight to our team</a>, or just <a href="#book">book your call directly</a> and skip the email.');
+        return;
+      }
+      if (isHighIntent(text)){
+        lead.state = 'awaiting_email';
+        sendReply("Love it — let's get your strategy session locked in. What's the best email to tie to your store profile?");
+        return;
+      }
+
+      // --- Normal FAQ matching ---
+      sendReply(findAnswer(text));
     }
 
     chatForm.addEventListener('submit', function(e){
@@ -1568,6 +1820,33 @@
     });
 
     suggestions.addEventListener('click', function(e){
+      var segBtn = e.target.closest('button[data-segment]');
+      if (segBtn){
+        var seg = segBtn.getAttribute('data-segment');
+        addMessage(segBtn.textContent, 'user');
+        if (seg === 'A'){
+          sendReply("Got it — for someone getting a store off the ground, most people start with the <strong>$199, 90-minute consultation</strong> (credited toward a full Buildout later), the <strong>Store Buildout ($14,997+)</strong>, or <strong>Elite Membership ($5,997)</strong> for hands-on mentorship through launch. What sounds closest to what you need?");
+          setTimeout(function(){
+            setSuggestions([
+              { q:'Tell me about the $199 consultation', label:'$199 consultation' },
+              { q:'How does Store Buildout work?', label:'Store Buildout' },
+              { q:'What is Elite Membership?', label:'Elite Membership' },
+              { q:'How do I book a call?', label:'Book a call' }
+            ]);
+          }, 750);
+        } else {
+          sendReply("Perfect — for an existing store, the fastest wins are usually the <strong>PostalMate Profit Maximizer ($1,997)</strong>, <strong>PostageSync ($19&ndash;$49/mo)</strong> for catching carrier overcharges, or <strong>In-Store Training</strong> if your team needs it. What's the priority right now?");
+          setTimeout(function(){
+            setSuggestions([
+              { q:'What is the PostalMate Profit Maximizer?', label:'PostalMate' },
+              { q:'What is PostageSync?', label:'PostageSync' },
+              { q:'Tell me about In-Store Training', label:'In-Store Training' },
+              { q:'How do I book a call?', label:'Book a call' }
+            ]);
+          }, 750);
+        }
+        return;
+      }
       var btn = e.target.closest('button[data-q]');
       if (btn) handleQuestion(btn.getAttribute('data-q'));
     });
